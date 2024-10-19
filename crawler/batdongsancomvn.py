@@ -10,9 +10,10 @@ import random
 class BatDongSanComVn(BaseCrawler):
     def __init__(self, proxies, user_agents):
         target_url = 'https://batdongsan.com.vn/ban-can-ho-chung-cu-ha-noi/p{page}'
-        page_limit = 10
-        save_path = 'data/raw/batdongsancomvn.json'
-        super().__init__(proxies, user_agents, target_url, page_limit, save_path)
+        start_page = 6
+        end_page = 6
+        save_path = 'data/raw/batdongsancomvn6-10.json'
+        super().__init__(proxies, user_agents, target_url, start_page, end_page, save_path)
         
         self.base_url = 'https://batdongsan.com.vn'
 

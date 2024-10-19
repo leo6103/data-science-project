@@ -10,9 +10,10 @@ import random
 class DoThiNet(BaseCrawler):
     def __init__(self, proxies, user_agents):
         target_url = 'https://dothi.net/ban-can-ho-chung-cu-ha-noi/p{page}.htm'
-        page_limit = 1
+        start_page = 1
+        end_page = 5
         save_path = 'data/raw/dothinet.json'
-        super().__init__(proxies, user_agents, target_url, page_limit, save_path)
+        super().__init__(proxies, user_agents, target_url, start_page, end_page, save_path)
         
         self.base_url = 'https://dothi.net/'
 
@@ -45,23 +46,25 @@ class DoThiNet(BaseCrawler):
             item_general_info['url'] = None
             print(f"Error extracting URL: {e}")
 
-        # Extract price (bỏ qua phần label)
         try:
             price_element = item_html.find('div', class_='price')
-            price_value = price_element.find(text=True, recursive=False).strip()  # Chỉ lấy phần text không nằm trong thẻ con
+            # Use the .next_sibling property to skip over the label and access the direct text node
+            price_value = price_element.get_text(strip=True, separator=' ').split(':')[-1].strip()
             item_general_info['price'] = price_value
         except Exception as e:
             item_general_info['price'] = None
             print(f"Error extracting price: {e}")
 
-        # Extract area (bỏ qua phần label)
+
         try:
             area_element = item_html.find('div', class_='area')
-            area_value = area_element.find(text=True, recursive=False).strip()  # Chỉ lấy phần text không nằm trong thẻ con
+            # Use the .next_sibling property to skip over the label and access the direct text node
+            area_value = area_element.get_text(strip=True, separator=' ').split(':')[-1].strip()
             item_general_info['area'] = area_value
         except Exception as e:
             item_general_info['area'] = None
             print(f"Error extracting area: {e}")
+
 
         # Extract location (bỏ qua phần label)
         try:
@@ -89,19 +92,39 @@ class DoThiNet(BaseCrawler):
         # Extract features from table with id 'tbl1'
         table_features = {}
         try:
-            table = soup.find('table')
-            rows = table.find_all('tr')
-            
-            for row in rows:
-                cells = row.find_all('td')
-                if len(cells) >= 2:
-                    key = cells[0].get_text(strip=True)  # Key is the first <td>
-                    value = cells[1].get_text(strip=True)  # Value is the second <td>
-                    table_features[key] = value
+            table = soup.find('table', id='tbl1')  # Find table by id
+            if table:
+                rows = table.find_all('tr')  # Get all rows
+
+                for row in rows:
+                    cells = row.find_all('td')  # Get all cells in the row
+                    if len(cells) >= 2:  # Ensure there are at least two cells
+                        key = cells[0].get_text(strip=True)  # Key is the first <td>
+                        value = cells[1].get_text(strip=True)  # Value is the second <td>
+                        table_features[key] = value  # Store key-value pair
         except Exception as e:
             print(f"Error when extracting table features: {e}")
 
         detail_info.update(table_features)
+
+        # Extract latitude and longitude
+        # Extract latitude and longitude from the hidden input fields
+        try:
+            lat_input = soup.find('input', id='hddLatitude')
+            lon_input = soup.find('input', id='hddLongtitude')
+            print(lat_input)
+            print(lon_input)
+
+            if lat_input and lon_input:
+                latitude = lat_input.get('value')
+                print(latitude)
+                longitude = lon_input.get('value')
+
+                detail_info['latitude'] = latitude
+                detail_info['longitude'] = longitude
+        except Exception as e:
+            print(f"Error when extracting latitude and longitude: {e}")
+
 
         return detail_info
 
