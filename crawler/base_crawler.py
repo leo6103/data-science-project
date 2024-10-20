@@ -9,7 +9,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException
 import concurrent.futures
-from utils import SELENIUM, REQUESTS
+from utils import SELENIUM, REQUESTS, PLAYWRIGHT
+from playwright.sync_api import sync_playwright
 
 class BaseCrawler:
     def __init__(
@@ -84,6 +85,24 @@ class BaseCrawler:
             except requests.exceptions.RequestException as e:
                 print(e)
             return None
+        elif self.request_type == PLAYWRIGHT:
+            try:
+                with sync_playwright() as p:
+                    # Tạo một context với User-Agent
+                    browser = p.chromium.launch(headless=False)
+                    context = browser.new_context(
+                        user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+                    )
+                    page = context.new_page()
+                    page.goto(url)
+                    page_source = page.content()
+
+                    print(f"Successfully fetched page using Playwright: {url}")
+                    return page_source
+
+            except Exception as e:
+                print(f"Error occurred while fetching page with Playwright: {e}")
+                return None
 
     def extract_house_items(self, html: BeautifulSoup) -> list:
         pass

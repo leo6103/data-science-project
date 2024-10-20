@@ -6,7 +6,7 @@ import re
 import json
 import time
 import random
-from utils import REQUESTS, SELENIUM
+from utils import REQUESTS, SELENIUM, PLAYWRIGHT
 
 class BatDongSanComVn(BaseCrawler):
     def __init__(
@@ -116,9 +116,9 @@ if __name__ == '__main__':
 
     target_url = 'https://batdongsan.com.vn/ban-can-ho-chung-cu-ha-noi/p1/p{page}'
     start_page = 1
-    end_page = 15
-    save_path = 'data/raw/batdongsancomvn.json'
-    request_type = SELENIUM
+    end_page = 1
+    save_path = f'data/raw/batdongsancomvn/chungcu/{start_page}-{end_page}.json'
+    request_type = PLAYWRIGHT
     multithreading = True
 
     crawler = BatDongSanComVn(proxies, user_agents, target_url, start_page, end_page, save_path, request_type, multithreading)
