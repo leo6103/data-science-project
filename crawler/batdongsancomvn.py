@@ -6,17 +6,22 @@ import re
 import json
 import time
 import random
+from utils import REQUESTS, SELENIUM
 
 class BatDongSanComVn(BaseCrawler):
-    def __init__(self, proxies, user_agents):
-        target_url = 'https://batdongsan.com.vn/ban-can-ho-chung-cu-ha-noi/p{page}'
-        start_page = 6
-        end_page = 6
-        save_path = 'data/raw/batdongsancomvn6-10.json'
-        super().__init__(proxies, user_agents, target_url, start_page, end_page, save_path)
-        
+    def __init__(
+            self, 
+            proxies, 
+            user_agents, 
+            target_url, 
+            start_page, 
+            end_page, 
+            save_path, 
+            request_type, 
+            multi_threading
+        ):
+        super().__init__(proxies, user_agents, target_url, start_page, end_page, save_path, request_type, multi_threading)
         self.base_url = 'https://batdongsan.com.vn'
-
 
     def extract_house_items(self, soup: BeautifulSoup) -> list:
         elements = soup.find_all(class_='js__card js__card-full-web pr-container re__card-full re__vip-diamond')
@@ -98,6 +103,8 @@ class BatDongSanComVn(BaseCrawler):
         
         return detail_info
 
+import time
+
 if __name__ == '__main__':
     proxies = []
     user_agents = [
@@ -105,5 +112,19 @@ if __name__ == '__main__':
         'Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0'
     ]
 
-    crawler = BatDongSanComVn(proxies, user_agents)
+    start_time = time.time()
+
+    target_url = 'https://batdongsan.com.vn/ban-can-ho-chung-cu-ha-noi/p1/p{page}'
+    start_page = 1
+    end_page = 15
+    save_path = 'data/raw/batdongsancomvn.json'
+    request_type = SELENIUM
+    multithreading = True
+
+    crawler = BatDongSanComVn(proxies, user_agents, target_url, start_page, end_page, save_path, request_type, multithreading)
     crawler.run()
+
+    end_time = time.time()
+
+    total_time = end_time - start_time
+    print(f"Running time: {total_time:.2f} seconds")

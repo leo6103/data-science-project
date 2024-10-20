@@ -1,0 +1,2 @@
+SELENIUM = 'selenium'
+REQUESTS = 'requests'

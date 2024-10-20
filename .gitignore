@@ -1,2 +1,4 @@
 ds
 web_driver
+__pycache__
+venv
