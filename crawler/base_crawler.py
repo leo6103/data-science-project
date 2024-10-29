@@ -12,6 +12,7 @@ import concurrent.futures
 from .utils import SELENIUM, REQUESTS, PLAYWRIGHT
 from playwright.sync_api import sync_playwright
 
+# truoc khi update
 class BaseCrawler:
     def __init__(
             self, 
@@ -24,20 +25,88 @@ class BaseCrawler:
             request_type=REQUESTS,
             multi_threading=False
         ):
-        self.proxies = proxies
-        self.user_agents = user_agents
+        
+        self.proxies =proxies
+#         self.proxies=[
+#     "127.0.0.1:30000",
+#     "127.0.0.1:30001",
+#     "127.0.0.1:30002",
+#     "127.0.0.1:30003",
+#     "127.0.0.1:30004",
+#     "127.0.0.1:30005",
+#     "127.0.0.1:30006",
+#     "127.0.0.1:30007",
+#     "127.0.0.1:30008",
+#     "127.0.0.1:30009",
+#     "127.0.0.1:30010",
+#     "127.0.0.1:30011",
+#     "127.0.0.1:30012",
+#     "127.0.0.1:30013",
+#     "127.0.0.1:30014",
+#     "127.0.0.1:30015",
+#     "127.0.0.1:30016",
+#     "127.0.0.1:30017",
+#     "127.0.0.1:30018",
+#     "127.0.0.1:30019"
+
+   
+# ]
+        self.user_agents=user_agents
+#         self.user_agents =[ # Chrome trên Windows
+#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.110 Safari/537.36",
+#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.5672.127 Safari/537.36",
+#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.49 Safari/537.36",
+    
+#     # Firefox trên Windows
+#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0",
+#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:114.0) Gecko/20100101 Firefox/114.0",
+#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:113.0) Gecko/20100101 Firefox/113.0",
+
+#     # Safari trên macOS
+#     "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15",
+#     "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_2_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15",
+#     "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15",
+
+#     # Chrome trên macOS
+#     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.49 Safari/537.36",
+#     "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.111 Safari/537.36",
+
+#     # Firefox trên macOS
+#     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:106.0) Gecko/20100101 Firefox/106.0",
+#     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:105.0) Gecko/20100101 Firefox/105.0",
+    
+#     # Chrome trên Linux
+#     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.5414.74 Safari/537.36",
+#     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.5359.124 Safari/537.36",
+
+#     # Firefox trên Linux
+#     "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/109.0",
+#     "Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0",
+    
+#     # Edge trên Windows
+#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.1661.44 Safari/537.36 Edg/111.0.1661.44",
+#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.1587.57 Safari/537.36 Edg/110.0.1587.57",
+
+    
+#     # Cốc Cốc trên Windows
+#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/95.0.150 Chrome/89.0.4389.150 Safari/537.36",
+# ]
         self.target_url = target_url
         self.start_page = start_page
         self.end_page = end_page
         self.save_path = save_path
         self.request_type = request_type
         self.multi_threading = multi_threading
+  
 
     def send_request(self, url):
+       
         if self.request_type == SELENIUM:
+            user_agent = random.choice(self.user_agents)
+            # proxy = random.choice(self.proxies)
             chrome_options = Options()
-            chrome_options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
-            
+            chrome_options.add_argument(f"user-agent={user_agent}")
+            # chrome_options.add_argument(f"--proxy-server=http://{proxy}")
             driver = webdriver.Chrome(options=chrome_options)
 
             try:
@@ -57,6 +126,8 @@ class BaseCrawler:
             finally:
                 driver.quit()
         elif self.request_type == REQUESTS:
+            # proxy = random.choice(self.proxies)
+            user_agent = random.choice(self.user_agents)
             headers = {
                 "Pragma": "no-cache",
                 "Priority": "u=0, i",
@@ -68,11 +139,12 @@ class BaseCrawler:
                 "Sec-Fetch-Site": "none",
                 "Sec-Fetch-User": "?1",
                 "Upgrade-Insecure-Requests": "1",
-                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",  # Updated the Chrome version here
+                "User-Agent": random.choice(self.user_agents),
                 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
                 "Accept-Language": "en-US,en;q=0.9,vi-VN;q=0.8,vi;q=0.7",
                 "Cache-Control": "no-cache",
             }
+            # proxies = {"http": f"http://{proxy}", "https": f"http://{proxy}"}
             
             try:
                 response = requests.get(url, headers=headers)
@@ -86,19 +158,23 @@ class BaseCrawler:
                 print(e)
             return None
         elif self.request_type == PLAYWRIGHT:
+            user_agent = random.choice(self.user_agents)
+            # proxy = random.choice(self.proxies)
             try:
                 with sync_playwright() as p:
                     # Tạo một context với User-Agent
-                    browser = p.chromium.launch(headless=False)
+                    browser = p.chromium.launch(headless=True)
                     context = browser.new_context(
-                        user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+                        user_agent=user_agent
                     )
                     page = context.new_page()
                     page.goto(url)
+                    page.wait_for_load_state("domcontentloaded")
                     page_source = page.content()
 
                     print(f"Successfully fetched page using Playwright: {url}")
                     return page_source
+                
 
             except Exception as e:
                 print(f"Error occurred while fetching page with Playwright: {e}")
@@ -123,7 +199,8 @@ class BaseCrawler:
         html = self.send_request(url)
         if html is None:
             return []
-
+       # Thêm khoảng nghỉ ngẫu nhiên giữa các lần truy cập URL
+        time.sleep(random.uniform(1, 2))
         soup = BeautifulSoup(html, 'html.parser')
         house_items = self.extract_house_items(soup)
 

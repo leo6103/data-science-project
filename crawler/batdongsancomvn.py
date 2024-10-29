@@ -24,8 +24,11 @@ class BatDongSanComVn(BaseCrawler):
         self.base_url = 'https://batdongsan.com.vn'
 
     def extract_house_items(self, soup: BeautifulSoup) -> list:
-        elements = soup.find_all(class_='js__card js__card-full-web pr-container re__card-full re__vip-diamond')
-        
+        # elements = soup.find_all(class_=['js__card js__card-full-web pr-container re__card-full re__vip-diamond',
+        #                                  'js__card js__card-full-web pr-container re__card-full  re__vip-silver',
+        #                                  'js__card js__card-full-web pr-container re__card-full re__vip-gold'])
+        elements = soup.find_all("div", class_=re.compile(r"js__card.*pr-container.*re__card-full"))
+
         print(elements)
         valid_elements = [element for element in elements if element.get('prid') and element.get('prid') != '0']
 
@@ -33,10 +36,17 @@ class BatDongSanComVn(BaseCrawler):
 
     
     def extract_item_url(self, item_html: BeautifulSoup) -> str:
-        item_url = self.base_url + item_html.find('a', class_='js__product-link-for-product-id').get('href')
-
+        # item_url = self.base_url + item_html.find('a', class_='js__product-link-for-product-id').get('href')
+        link_tag = item_html.find('a', class_='js__product-link-for-product-id')
+        if link_tag and link_tag.get('href'):
+            href = link_tag.get('href')
+            if href.startswith("http://") or href.startswith("https://"):
+                item_url = href 
+            else:
+                item_url = self.base_url + href
         return item_url
-
+    
+    
     def extract_general_info(self, item_html: BeautifulSoup) -> dict:
         item_general_info = {}
 
@@ -56,7 +66,7 @@ class BatDongSanComVn(BaseCrawler):
 
         try:
             location_element = item_html.find('div', class_='re__card-location')
-            location = location_element.find_all('span')[-1].get_text(separator=' ', strip=True) if location_element else None
+            location = location_element.find_all(['span', 'i'])[-1].get_text(separator=' ', strip=True) if location_element else None
             item_general_info['location'] = location
         except Exception as e:
             item_general_info['location'] = None
@@ -106,19 +116,73 @@ class BatDongSanComVn(BaseCrawler):
 import time
 
 if __name__ == '__main__':
-    proxies = []
+    proxies =[]
+    # ["127.0.0.1:30000",
+    # "127.0.0.1:30001",
+    # "127.0.0.1:30002",
+    # "127.0.0.1:30003",
+    # "127.0.0.1:30004",
+    # "127.0.0.1:30005",
+    # "127.0.0.1:30006",
+    # "127.0.0.1:30007",
+    # "127.0.0.1:30008",
+    # "127.0.0.1:30009",
+    # "127.0.0.1:30010",
+    # "127.0.0.1:30011",
+    # "127.0.0.1:30012",
+    # "127.0.0.1:30013",
+    # "127.0.0.1:30014",
+    # "127.0.0.1:30015",
+    # "127.0.0.1:30016",
+    # "127.0.0.1:30017",
+    # "127.0.0.1:30018",
+    # "127.0.0.1:30019"]
     user_agents = [
-        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
-        'Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0'
+       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.110 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.5672.127 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.49 Safari/537.36",
+    
+    # Firefox trên Windows
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:114.0) Gecko/20100101 Firefox/114.0",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:113.0) Gecko/20100101 Firefox/113.0",
+
+    # Safari trên macOS
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_2_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15",
+
+    # Chrome trên macOS
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.49 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.111 Safari/537.36",
+
+    # Firefox trên macOS
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:106.0) Gecko/20100101 Firefox/106.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:105.0) Gecko/20100101 Firefox/105.0",
+    
+    # Chrome trên Linux
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.5414.74 Safari/537.36",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.5359.124 Safari/537.36",
+
+    # Firefox trên Linux
+    "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/109.0",
+    "Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0",
+    
+    # Edge trên Windows
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.1661.44 Safari/537.36 Edg/111.0.1661.44",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.1587.57 Safari/537.36 Edg/110.0.1587.57",
+
+    
+    # Cốc Cốc trên Windows
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/95.0.150 Chrome/89.0.4389.150 Safari/537.36"
     ]
 
     start_time = time.time()
-
     target_url = 'https://batdongsan.com.vn/ban-can-ho-chung-cu-ha-noi/p1/p{page}'
-    start_page = 1
-    end_page = 1
+    start_page =46
+    end_page =55
     save_path = f'data/raw/batdongsancomvn/chungcu/{start_page}-{end_page}.json'
-    request_type = PLAYWRIGHT
+    request_type = SELENIUM
     multithreading = True
 
     crawler = BatDongSanComVn(proxies, user_agents, target_url, start_page, end_page, save_path, request_type, multithreading)
