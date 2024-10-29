@@ -1,4 +1,4 @@
-from base_crawler import BaseCrawler
+from .base_crawler import BaseCrawler
 import requests
 from bs4 import BeautifulSoup
 import logging
@@ -6,13 +6,13 @@ import re
 import json
 import time
 import random
-from utils import REQUESTS, SELENIUM, PLAYWRIGHT
+from .utils import REQUESTS, SELENIUM, PLAYWRIGHT
 
 class BatDongSanComVn(BaseCrawler):
     def __init__(
             self, 
             proxies, 
-            user_agents, 
+            user_agents,
             target_url, 
             start_page, 
             end_page, 
@@ -34,12 +34,12 @@ class BatDongSanComVn(BaseCrawler):
     
     def extract_item_url(self, item_html: BeautifulSoup) -> str:
         item_url = self.base_url + item_html.find('a', class_='js__product-link-for-product-id').get('href')
-        
+
         return item_url
-    
+
     def extract_general_info(self, item_html: BeautifulSoup) -> dict:
         item_general_info = {}
-        
+
         try:
             title_element = item_html.find('span', class_='pr-title js__card-title')
             title = title_element.get_text(separator=' ', strip=True) if title_element else None
