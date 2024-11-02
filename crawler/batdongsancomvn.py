@@ -24,9 +24,7 @@ class BatDongSanComVn(BaseCrawler):
         self.base_url = 'https://batdongsan.com.vn'
 
     def extract_house_items(self, soup: BeautifulSoup) -> list:
-        # elements = soup.find_all(class_=['js__card js__card-full-web pr-container re__card-full re__vip-diamond',
-        #                                  'js__card js__card-full-web pr-container re__card-full  re__vip-silver',
-        #                                  'js__card js__card-full-web pr-container re__card-full re__vip-gold'])
+    
         elements = soup.find_all("div", class_=re.compile(r"js__card.*pr-container.*re__card-full"))
 
         print(elements)
@@ -36,7 +34,6 @@ class BatDongSanComVn(BaseCrawler):
 
     
     def extract_item_url(self, item_html: BeautifulSoup) -> str:
-        # item_url = self.base_url + item_html.find('a', class_='js__product-link-for-product-id').get('href')
         link_tag = item_html.find('a', class_='js__product-link-for-product-id')
         if link_tag and link_tag.get('href'):
             href = link_tag.get('href')
@@ -178,11 +175,18 @@ if __name__ == '__main__':
     ]
 
     start_time = time.time()
-    target_url = 'https://batdongsan.com.vn/ban-can-ho-chung-cu-ha-noi/p1/p{page}'
-    start_page =46
-    end_page =55
-    save_path = f'data/raw/batdongsancomvn/chungcu/{start_page}-{end_page}.json'
-    request_type = SELENIUM
+    # target_url = 'https://batdongsan.com.vn/ban-can-ho-chung-cu-ha-noi/p1/p{page}'
+    # target_url = 'https://batdongsan.com.vn/ban-dat/p1/p{page}'
+    target_url = 'https://batdongsan.com.vn/ban-nha-rieng/p1/p{page}'
+
+    start_page =101
+    end_page =120
+    # save_path = f'data/raw/batdongsancomvn/chungcu/{start_page}-{end_page}.json'
+    # save_path = f'data/raw/batdongsancomvn/dat/{start_page}-{end_page}.json'
+    save_path = f'data/raw/batdongsancomvn/nharieng/{start_page}-{end_page}.json'
+
+
+    request_type = PLAYWRIGHT
     multithreading = True
 
     crawler = BatDongSanComVn(proxies, user_agents, target_url, start_page, end_page, save_path, request_type, multithreading)
