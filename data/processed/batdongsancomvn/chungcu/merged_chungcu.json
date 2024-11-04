@@ -16,7 +16,24 @@
     {
         "title": "Bán nhà tầng 1 tại TTVTVH ô tô đỗ cửa giá 3,65 tỷ VND tại Phố Mai Dịch, nhanh tay gọi ngay kẻo bay",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-pho-mai-dich-phuong-mai-dich/ban-nha-tang-1-tai-ttvtvh-o-to-do-cua-gia-3-65-ty-vnd-tai-nhanh-tay-goi-ngay-keo-bay-pr41344031",
-        "location": "Cầu Giấy, Hà Nội"
+        "location": "Cầu Giấy, Hà Nội",
+        "area": 41.0,
+        "price": 3650.0,
+        "house_direction": [
+            6.123233995736766e-17,
+            1.0
+        ],
+        "balcony_direction": [
+            1.0,
+            0.0
+        ],
+        "bedrooms": 2,
+        "toilets": 1,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 21.043030102287,
+        "longitude": 105.77533993792,
+        "price_square": 89.02439024390245
     },
     {
         "title": "Căn hộ Golden Land giá 9,25 tỷ VND, vị trí đắc địa tại Hà Nội",
@@ -1368,7 +1385,24 @@
     {
         "title": "Hot. Hot chính chủ bán căn hộ chung cư 3PN tại chung cư Iris Garden Số 30 Trần Hữu Dực Mỹ Đình",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-tran-huu-duc-phuong-cau-dien-prj-iris-garden/t-t-chinh-chu-ban-3pn-tai-so-30-my-dinh-pr41182913",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 135.0,
+        "price": 7880.0,
+        "house_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "balcony_direction": [
+            6.123233995736766e-17,
+            1.0
+        ],
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "- Sổ hồng sẵn két giao dịch ngay.",
+        "furniture": "Đầy đủ",
+        "latitude": 21.0294096533919,
+        "longitude": 105.763276788161,
+        "price_square": 58.370370370370374
     },
     {
         "title": "Cần bán gấp cắt lỗ căn hộ Kim Văn Kim Lũ 56m2, 2PN, 2WC, nội thất đầy đủ, sổ đỏ chính chủ",
@@ -1659,7 +1693,16 @@
     {
         "title": "Chính thức mở bán căn hộ chung cư cao cấp Vinhomes Cổ Loa",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-co-loa-xa-dong-hoi-prj-vinhomes-co-loa/chinh-thuc-mo-ban-cao-cap-vinmes-loa-pr41122671",
-        "location": "Đông Anh, Hà Nội"
+        "location": "Đông Anh, Hà Nội",
+        "area": 100.0,
+        "price": "deal",
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ.",
+        "latitude": 21.115686416626,
+        "longitude": 105.870132446289,
+        "price_square": "deal"
     },
     {
         "title": "Chỉ từ 70tr/m2 giá đầu tư đợt 1 The Ninety Complex 90 Láng, vay LS 0% 21 tháng. LH: 0977 535 ***",
@@ -3197,7 +3240,15 @@
     {
         "title": "Tôi cần bán căn hộ tại T6 Time Citys, DT 108m2, có sổ hồng. LH trực tiếp 0913 517 *** MTG",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-minh-khai-phuong-vinh-tuy-prj-times-city/chinh-chu-ban-108m2-2pn-tai-toa-t6-timescity-q-hai-ba-trung-ha-noi-pr41156013",
-        "location": "Hai Bà Trưng, Hà Nội"
+        "location": "Hai Bà Trưng, Hà Nội",
+        "area": 108.0,
+        "price": 8500.0,
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ",
+        "latitude": 20.9947910308838,
+        "longitude": 105.86784362793,
+        "price_square": 78.70370370370371
     },
     {
         "title": "Cần bán nhanh 77.5m2(2PN+2vs) - view hồ - bc Đông Nam - rẻ nhất bảng hàng Khai Sơn City vào ở ngay",
@@ -4072,7 +4123,16 @@
     {
         "title": "Căn hộ 56m2 @Home 987 Tam Trinh, có sổ, 2 phòng ngủ, 2 vệ sinh, nội thất cơ bản",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-tam-trinh-phuong-yen-so-prj-nha-o-xa-hoi-home/-56m2-me-987-2-png-ngu-2-ve-sinh-noi-that-co-ban-pr41119226",
-        "location": "Hoàng Mai, Hà Nội"
+        "location": "Hoàng Mai, Hà Nội",
+        "area": 56.0,
+        "price": 2500.0,
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Cơ bản.",
+        "latitude": 20.9799327850342,
+        "longitude": 105.864631652832,
+        "price_square": 44.642857142857146
     },
     {
         "title": "CCMN - Nguyễn Trãi - Royal City - Trường Chinh - Láng - Tây Sơn 35m2 - 55m2 giá 900 triệu - 1,8 tỷ",
@@ -4751,7 +4811,14 @@
     {
         "title": "Bán nhanh căn hộ 2 ngủ 69,9m2 tại chung cư Thái Hà - Thành phố Giao Lưu",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-pham-van-dong-phuong-co-nhue-1-prj-thanh-pho-giao-luu/ban-nhanh-2-ngu-69-9m-tai-thai-ha-p-luu-pr41305493",
-        "location": "Bắc Từ Liêm, Hà Nội"
+        "location": "Bắc Từ Liêm, Hà Nội",
+        "area": 69.9,
+        "price": 4800.0,
+        "bedrooms": 2,
+        "toilets": 2,
+        "latitude": 21.062650680541992,
+        "longitude": 105.78419494628906,
+        "price_square": 68.6695278969957
     },
     {
         "title": "Siêu đẹp! Chính chủ bán căn 2 ngủ trục đẹp nhất tòa Vinhomes Metropolis, full đồ, giá 11.5 tỷ",
@@ -4906,7 +4973,14 @@
     {
         "title": "Em có quỹ căn hộ 2PN-3PN chung cư IA20 cần bán diện tích 92m2-110m2, full đồ nội thất giá từ 5 tỷ",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-phuong-dong-ngac-prj-ia20-ciputra/em-co-quy-2pn-3pn-ban-dien-tich-92m2-110m2-full-do-noi-that-gia-tu-5x-ty-pr41327657",
-        "location": "Bắc Từ Liêm, Hà Nội"
+        "location": "Bắc Từ Liêm, Hà Nội",
+        "area": 92.0,
+        "price": 5000.0,
+        "bedrooms": 3,
+        "toilets": 2,
+        "latitude": 21.0919170379639,
+        "longitude": 105.785003662109,
+        "price_square": 54.34782608695652
     },
     {
         "title": "Chính chủ gửi bán căn 2PN, DT 73m2, View biển nhân tạo, tại phân khu Masteri",
@@ -9948,7 +10022,23 @@
     {
         "title": "BÁN GẤP CĂN 4PN VINHOMES WEST POINT 135m2 GIÁ 8.3 TỶ . LH 0934 998 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-pham-hung-phuong-me-tri-prj-vinhomes-west-point/ban-toan-bo-quy-2pn-3pn-4pn-duplex-lh-pr38687947",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 135.0,
+        "price": 8300.0,
+        "house_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "balcony_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "bedrooms": 4,
+        "toilets": 3,
+        "legal_status": "Hợp đồng mua bán",
+        "latitude": 21.0118827819824,
+        "longitude": 105.786445617676,
+        "price_square": 61.48148148148148
     },
     {
         "title": "(Quyết giá thật). Quỹ căn hộ Tháng 10/2024 1PN 2PN + 3PN Duplex chủ nhà gửi bán chung cư Royal City",
@@ -10497,7 +10587,24 @@
     {
         "title": "Căn Duplex rẻ nhất Sunshine Green Iconic, view trường học, 170m2 - 12.3 tỷ - Hỗ trợ mọi thủ tục",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-phuong-phuc-dong-prj-sunshine-green-iconic/ban-duplex-re-nhat-tang-trung-155m-3pn-cua-tb-ban-cong-dn-pr40296868",
-        "location": "Long Biên, Hà Nội"
+        "location": "Long Biên, Hà Nội",
+        "area": 165.0,
+        "price": 12300.0,
+        "house_direction": [
+            0.7071067811865474,
+            -0.7071067811865477
+        ],
+        "balcony_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "bedrooms": 3,
+        "toilets": 3,
+        "legal_status": "Hợp đồng mua bán",
+        "furniture": "Cơ bản.",
+        "latitude": 21.0407333374023,
+        "longitude": 105.896560668945,
+        "price_square": 74.54545454545455
     },
     {
         "title": "Quỹ căn bán giá tốt hiện tại CC The Legend 64m2 4,7 tỷ - 73m2 5 tỷ - 85m2 giá 6,4 105m2 giá 7,5 tỷ",
@@ -12379,7 +12486,24 @@
     {
         "title": "Penthouse 430m2 còn thô chung cư Keangnam Vina 0974 681 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-pham-hung-phuong-me-tri-prj-keangnam-hanoi-landmark-tower/ban-duy-nhat-penhouse-408m2-vina-0974681333-pr37737923",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 430.4,
+        "price": 49500.0,
+        "house_direction": [
+            -1.8369701987210297e-16,
+            -1.0
+        ],
+        "balcony_direction": [
+            -0.7071067811865477,
+            -0.7071067811865475
+        ],
+        "bedrooms": 4,
+        "toilets": 5,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Không nội thất",
+        "latitude": 21.016849517822266,
+        "longitude": 105.78397369384766,
+        "price_square": 115.0092936802974
     },
     {
         "title": "Bán sàn văn phòng dòng tiền khủng, CC 536A Minh khai, dòng tiền ổn định",
@@ -13584,7 +13708,16 @@
     {
         "title": "Độc quyền quỹ căn 2-3-4PN cần bán gấp cắt lỗ tại Goldmark City - cập nhật hàng ngày. LH 0399 028 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-ho-tung-mau-phuong-phu-dien-prj-goldmark-city/doc-quyen-quy-2-3-4pn-ban-gap-cat-lo-tai-cap-nhat-hang-ngay-lh-pr40076519",
-        "location": "Bắc Từ Liêm, Hà Nội"
+        "location": "Bắc Từ Liêm, Hà Nội",
+        "area": 110.0,
+        "price": 5800.0,
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 21.0442333221436,
+        "longitude": 105.767318725586,
+        "price_square": 52.72727272727273
     },
     {
         "title": "Độc quyền quỹ căn 2-3-4 ngủ và Duplex tại Vinhomes Gardenia bán gấp cập nhật hàng ngày. 0988 121 ***",
@@ -14102,7 +14235,14 @@
     {
         "title": "Bán quỹ căn hộ IPH 93m2, 98m2, 113m2, 200m2, từ 2 - 3 - 4 phòng ngủ. Giá tốt nhất, LH 0389 018 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-xuan-thuy-phuong-dich-vong-hau-prj-indochina-plaza-hanoi/ban-quy-iph-93m2-98m2-117m2-200m2-tu-2-3-4-png-ngu-gia-tot-nhat-lh-0389018359-pr37360107",
-        "location": "Cầu Giấy, Hà Nội"
+        "location": "Cầu Giấy, Hà Nội",
+        "area": 217.0,
+        "price": "deal",
+        "bedrooms": 4,
+        "toilets": 3,
+        "latitude": 21.0360012054443,
+        "longitude": 105.78246307373,
+        "price_square": "deal"
     },
     {
         "title": "Chính chủ bán chung cư nhà 18T DT 116m2 nhà căn góc đã sửa chữa cực đẹp - nội thất cao cấp",
@@ -14415,7 +14555,15 @@
     {
         "title": "Sốc: Bán căn hộ 1 ngủ giá 2.5 tỷ, giá chỉ bằng căn studi. Tại Vinhomes Smart",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-phuong-tay-mo-prj-vinhomes-smart-city/soc-ban-1-ngu-gia-2-5-ty-gia-chi-bang-studi-tai-vinmes-smart-pr41322353",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 40.0,
+        "price": 2550.0,
+        "bedrooms": 1,
+        "toilets": 1,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "latitude": 21.008962631225586,
+        "longitude": 105.74391174316406,
+        "price_square": 63.75
     },
     {
         "title": "Bán siêu phẩm 2 ngủ 54m2, full đồ giá 3.4 tỷ, Vinhomes Smart",
