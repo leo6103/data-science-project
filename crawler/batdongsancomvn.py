@@ -1,4 +1,4 @@
-from base_crawler import BaseCrawler
+from crawler.base_crawler import BaseCrawler
 import requests
 from bs4 import BeautifulSoup
 import logging
@@ -6,7 +6,7 @@ import re
 import json
 import time
 import random
-from utils import REQUESTS, SELENIUM, PLAYWRIGHT
+from crawler.utils import REQUESTS, SELENIUM, PLAYWRIGHT
 
 class BatDongSanComVn(BaseCrawler):
     def __init__(
