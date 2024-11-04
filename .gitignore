@@ -2,3 +2,4 @@ ds
 web_driver
 __pycache__
 venv
+/app/fe/node_modules
