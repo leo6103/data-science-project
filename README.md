@@ -18,15 +18,15 @@ python -m venv venv
 ```bash
 pip install -r requirements.txt
 ```
-
-### Run crawler
-
-```bash
-python crawler/<crawler_file_name>.py
-```
-
 ### Deactivate Virtual Environment
 
 ```bash
 deactivate
+```
+
+
+## 2. Run crawler
+
+```bash
+python -m crawler/<crawler_file_name>.py
 ```
