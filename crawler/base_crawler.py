@@ -10,14 +10,15 @@ from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException
 import concurrent.futures
 from crawler.utils import SELENIUM, REQUESTS, PLAYWRIGHT
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, TimeoutError
+from collections import deque
 
 # truoc khi update
 class BaseCrawler:
     def __init__(
             self, 
-            proxies, 
-            user_agents, 
+            proxies,
+            user_agents: deque, 
             target_url,
             start_page,
             end_page,
@@ -27,76 +28,15 @@ class BaseCrawler:
         ):
         
         self.proxies =proxies
-#         self.proxies=[
-#     "127.0.0.1:30000",
-#     "127.0.0.1:30001",
-#     "127.0.0.1:30002",
-#     "127.0.0.1:30003",
-#     "127.0.0.1:30004",
-#     "127.0.0.1:30005",
-#     "127.0.0.1:30006",
-#     "127.0.0.1:30007",
-#     "127.0.0.1:30008",
-#     "127.0.0.1:30009",
-#     "127.0.0.1:30010",
-#     "127.0.0.1:30011",
-#     "127.0.0.1:30012",
-#     "127.0.0.1:30013",
-#     "127.0.0.1:30014",
-#     "127.0.0.1:30015",
-#     "127.0.0.1:30016",
-#     "127.0.0.1:30017",
-#     "127.0.0.1:30018",
-#     "127.0.0.1:30019"
-
-   
-# ]
         self.user_agents=user_agents
-#         self.user_agents =[ # Chrome trên Windows
-#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.110 Safari/537.36",
-#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.5672.127 Safari/537.36",
-#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.49 Safari/537.36",
-    
-#     # Firefox trên Windows
-#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0",
-#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:114.0) Gecko/20100101 Firefox/114.0",
-#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:113.0) Gecko/20100101 Firefox/113.0",
-
-#     # Safari trên macOS
-#     "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15",
-#     "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_2_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15",
-#     "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15",
-
-#     # Chrome trên macOS
-#     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.49 Safari/537.36",
-#     "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.111 Safari/537.36",
-
-#     # Firefox trên macOS
-#     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:106.0) Gecko/20100101 Firefox/106.0",
-#     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:105.0) Gecko/20100101 Firefox/105.0",
-    
-#     # Chrome trên Linux
-#     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.5414.74 Safari/537.36",
-#     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.5359.124 Safari/537.36",
-
-#     # Firefox trên Linux
-#     "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/109.0",
-#     "Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0",
-    
-#     # Edge trên Windows
-#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.1661.44 Safari/537.36 Edg/111.0.1661.44",
-#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.1587.57 Safari/537.36 Edg/110.0.1587.57",
-
-    
-#     # Cốc Cốc trên Windows
-#     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/95.0.150 Chrome/89.0.4389.150 Safari/537.36",
-# ]
         self.target_url = target_url
         self.start_page = start_page
         self.end_page = end_page
         self.save_path = save_path
         self.request_type = request_type
         self.multi_threading = multi_threading
+
+        self.item_num = 0
   
 
     def send_request(self, url):
@@ -158,27 +98,40 @@ class BaseCrawler:
                 print(e)
             return None
         elif self.request_type == PLAYWRIGHT:
-            user_agent = random.choice(self.user_agents)
-            # proxy = random.choice(self.proxies)
-            try:
-                with sync_playwright() as p:
-                    # Tạo một context với User-Agent
-                    browser = p.chromium.launch(headless=True)
-                    context = browser.new_context(
-                        user_agent=user_agent
-                    )
-                    page = context.new_page()
-                    page.goto(url)
-                    page.wait_for_load_state("domcontentloaded")
-                    page_source = page.content()
+            while True:
+                # Xoay vòng user-agent
+                self.user_agents.append(self.user_agents[0])
+                self.user_agents.popleft()  # Xoay vòng user-agent
 
-                    print(f"Successfully fetched page using Playwright: {url}")
-                    return page_source
-                
+                try:
+                    with sync_playwright() as p:
+                        browser = p.chromium.launch(headless=True)
+                        user_agent = self.user_agents[0]
+                        context = browser.new_context(user_agent=user_agent)
+                        page = context.new_page()
 
-            except Exception as e:
-                print(f"Error occurred while fetching page with Playwright: {e}")
-                return None
+                        # Cố gắng truy cập trang với thời gian chờ tối đa là 5 giây
+                        page.goto(url, wait_until="domcontentloaded")  # 5000 ms = 5 giây
+                        page.wait_for_load_state("domcontentloaded", timeout=5000)
+
+                        page_source = page.content()
+                        print(f"Successfully fetched page using Playwright: {url}")
+                        
+                        # Đóng context và browser sau khi hoàn thành
+                        page.close()
+                        context.close()
+                        browser.close()
+
+                        return page_source
+
+                except TimeoutError:
+                    print(f"Timeout occurred for URL: {url} with User-Agent: {user_agent}. Retrying with a new User-Agent...")
+                    # Tiếp tục vòng lặp với user-agent mới nếu hết thời gian chờ
+                    time.sleep(1)  # Đặt khoảng nghỉ ngắn trước khi thử lại
+
+                except Exception as e:
+                    print(f"Error occurred while fetching page with Playwright: {e}")
+                    return None
 
     def extract_house_items(self, html: BeautifulSoup) -> list:
         pass
@@ -193,32 +146,53 @@ class BaseCrawler:
         pass
 
     def crawl_page(self, page_num):
-        url = self.target_url.format(page=page_num)
-        print(f"Start crawling url: {url}")
-        
-        html = self.send_request(url)
-        if html is None:
-            return []
-       # Thêm khoảng nghỉ ngẫu nhiên giữa các lần truy cập URL
-        time.sleep(random.uniform(1, 2))
-        soup = BeautifulSoup(html, 'html.parser')
-        house_items = self.extract_house_items(soup)
-
         data = []
+        
+        while True:
+            # Pop phần tử đầu tiên và append vào cuối trong self.user_agents
+            self.user_agents.append(self.user_agents[0])
+            self.user_agents.popleft()
+            
+            url = self.target_url.format(page=page_num)
+            print(f"Start crawling url: {url}")
 
+            html = self.send_request(url)
+            
+            # Thêm khoảng nghỉ ngẫu nhiên giữa các lần truy cập URL
+            time.sleep(random.uniform(1, 2))
+
+            # Kiểm tra nếu không nhận được HTML, thì thử lại
+            if html is None:
+                print("Failed to retrieve HTML. Retrying...")
+                continue  # Bắt đầu lại vòng lặp nếu HTML là None
+
+            soup = BeautifulSoup(html, 'html.parser')
+            house_items = self.extract_house_items(soup)
+            
+            # Nếu không có house_items, tiếp tục lặp
+            if not house_items:
+                print("No items found on page. Retrying...")
+                continue  # Bắt đầu lại vòng lặp nếu house_items rỗng
+
+            # Nếu nhận được dữ liệu hợp lệ, thoát khỏi vòng lặp
+            break
+
+        # Xử lý dữ liệu sau khi lấy được house_items
         if self.multi_threading:
             # Sử dụng đa luồng nếu self.multi_threading = True
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 futures = [executor.submit(self.process_item, item) for item in house_items]
-
+                
                 for future in concurrent.futures.as_completed(futures):
                     item_data = future.result()
-                    data.append(item_data)
+                    if item_data['location'] is not None and 'Hà Nội' in item_data['location']:
+                        data.append(item_data)
         else:
             # Chạy tuần tự nếu self.multi_threading = False
             for item in house_items:
                 item_data = self.process_item(item)
-                data.append(item_data)
+                if item_data['location'] is not None and 'Hà Nội' in item_data['location']:
+                    data.append(item_data)
 
         return data
 
