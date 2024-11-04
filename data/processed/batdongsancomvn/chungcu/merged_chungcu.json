@@ -2,7 +2,16 @@
     {
         "title": "Quỹ căn chuyển nhượng Tháng 11 tòa Han Jardin N01-T6, T7 khu đô thị Ngoại Giao Đoàn, Tây Hồ Tây",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-nguyen-van-huyen-phuong-xuan-tao-prj-chung-cu-han-jardin/quy-chuyen-nhuong-tg-11-toa-n01-t6-t7-khu-do-ngoai-giao-doan-tay-tay-pr41344314",
-        "location": "Bắc Từ Liêm, Hà Nội"
+        "location": "Bắc Từ Liêm, Hà Nội",
+        "area": 107.0,
+        "price": 11240.0,
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 21.0396815418383,
+        "longitude": 105.79775416613,
+        "price_square": 105.04672897196262
     },
     {
         "title": "Bán nhà tầng 1 tại TTVTVH ô tô đỗ cửa giá 3,65 tỷ VND tại Phố Mai Dịch, nhanh tay gọi ngay kẻo bay",
@@ -168,7 +177,24 @@
     {
         "title": "Bán 2 ngủ toà T10 Times City có slot xe cố định diện tích rộng nhà full đồ đẹp. LH 0908 833 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-minh-khai-phuong-vinh-tuy-prj-times-city/ban-2-ngu-toa-t10-co-slot-xe-co-dinh-dien-tich-rong-nha-full-do-dep-lh-pr41342206",
-        "location": "Hai Bà Trưng, Hà Nội"
+        "location": "Hai Bà Trưng, Hà Nội",
+        "area": 90.0,
+        "price": 8650.0,
+        "house_direction": [
+            0.7071067811865476,
+            0.7071067811865475
+        ],
+        "balcony_direction": [
+            1.0,
+            0.0
+        ],
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 20.99479103088379,
+        "longitude": 105.86784362792969,
+        "price_square": 96.11111111111111
     },
     {
         "title": "Chính chủ bán CH SA5 The Sakura CH 1 ngủ có thể sửa thành 2 tầng 17 giá bán 3,2 tỷ LH: 0903 215 ***",
@@ -336,7 +362,24 @@
     {
         "title": "Quỹ căn trực tiếp CĐT giá cực tốt, quà tặng và chiết khấu lớn cho anh chị tại The Diamond Residence",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-le-van-luong-phuong-nhan-chinh-prj-the-diamond-residence/quy-truc-tiep-cdt-gia-cuc-tot-qua-tang-va-chiet-khau-lon-cho-anh-chi-tai-residence-pr41341578",
-        "location": "Thanh Xuân, Hà Nội"
+        "location": "Thanh Xuân, Hà Nội",
+        "area": 120.0,
+        "price": 10500.0,
+        "house_direction": [
+            -0.7071067811865477,
+            -0.7071067811865475
+        ],
+        "balcony_direction": [
+            -1.8369701987210297e-16,
+            -1.0
+        ],
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 21.0037169404935,
+        "longitude": 105.803267499864,
+        "price_square": 87.5
     },
     {
         "title": "Quỹ căn hộ bán 2 ngủ, 3 ngủ chung cư Usilk City, La Khê, Hà Đông tháng 5 năm 2023",
@@ -731,7 +774,16 @@
     {
         "title": "Bán căn hộ view hồ 160m2 3PN ở chung cư Watermark -395 Lạc Long Quân. Giá chỉ 14,5 tỷ LH 0906 244 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-lac-long-quan-phuong-nghia-do-1-prj-watermark/ban-395-126m2-2pn-view-chi-6-4-ty-lh-pr38351717",
-        "location": "Cầu Giấy, Hà Nội"
+        "location": "Cầu Giấy, Hà Nội",
+        "area": 160.0,
+        "price": 14500.0,
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 21.0555477142334,
+        "longitude": 105.80859375,
+        "price_square": 90.625
     },
     {
         "title": "Bán căn chung cư 89,53m2 chung cư Khai Sơn Long Biên City giá 5 tỷ 430",
@@ -968,7 +1020,12 @@
     {
         "title": "Bán tập thể tầng 1 tập thể Bộ Công An-Giải Phóng. 73m2x6mMT. Ngõ rộng 4 ô tô 7 chỗ đỗ cửa giá 3.4tỷ",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-giai-phong-phuong-giap-bat/ban-tap-the-tang-1-tap-the-bo-cong-an-73mx6mmt-ngo-rong-4-o-to-7-cho-do-cua-gia-3-4-ty-pr41310577",
-        "location": "Hoàng Mai, Hà Nội"
+        "location": "Hoàng Mai, Hà Nội",
+        "area": 73.0,
+        "price": 3400.0,
+        "latitude": 20.9840917873491,
+        "longitude": 105.840808597632,
+        "price_square": 46.57534246575342
     },
     {
         "title": "Chính chủ uỷ quyền nhượng lại căn góc số 12 view hồ dự án Green Diamond 93 Láng Hạ",
@@ -1660,22 +1717,70 @@
     {
         "title": "Bảng giá Feliz Homes chuyển nhượng, giá tốt tháng 10/2024 căn 2PN chỉ từ 4 tỷ, căn 3PN chỉ từ 5 tỷ",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-phuong-hoang-van-thu-4-prj-feliz-homes/chinh-chu-ban-3pn-gia-re-nhat-du-an-dien-tich-120m-ban-cong-13m2-gia-chi-5-3-ty-pr39724950",
-        "location": "Hoàng Mai, Hà Nội"
+        "location": "Hoàng Mai, Hà Nội",
+        "area": 83.0,
+        "price": 4600.0,
+        "house_direction": [
+            0.7071067811865474,
+            -0.7071067811865477
+        ],
+        "balcony_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ.",
+        "latitude": 20.9848365783691,
+        "longitude": 105.859855651855,
+        "price_square": 55.42168674698795
     },
     {
         "title": "Chuyên bán dự án Goldseason 47 Nguyễn Tuân 2 ngủ 3 ngủ giá chỉ từ 3x - 7x tỷ, liên hệ: 0977 858 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-nguyen-tuan-phuong-thanh-xuan-trung-prj-goldseason/chuyen-ban-du-an-47-2-ngu-3-ngu-gia-chi-tu-3x-4x-ty-lien-he-0977-858-974-pr39383405",
-        "location": "Thanh Xuân, Hà Nội"
+        "location": "Thanh Xuân, Hà Nội",
+        "area": 101.0,
+        "price": 6900.0,
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 20.9947719573975,
+        "longitude": 105.806129455566,
+        "price_square": 68.31683168316832
     },
     {
         "title": "(Cập nhật) Quỹ căn Keangnam chủ nhà tin tưởng gửi Bán - Đa dạng diện tích, giá rẻ, view đẹp",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-pham-hung-phuong-me-tri-prj-keangnam-hanoi-landmark-tower/-moi-quy-chu-nha-tin-tuong-gui-ban-da-dang-dien-tich-gia-ca-tot-nhat-pr39943445",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 118.0,
+        "price": 6900.0,
+        "balcony_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ.",
+        "latitude": 21.016849517822266,
+        "longitude": 105.78397369384766,
+        "price_square": 58.47457627118644
     },
     {
         "title": "Cần bán gấp căn hộ 2N1VS 60m2 tặng full nội thất giá 2600tr",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-xa-da-ton-prj-vinhomes-ocean-park-gia-lam/-ban-gap-2n1vs-60m2-tang-full-noi-that-2600tr-pr41286215",
-        "location": "Gia Lâm, Hà Nội"
+        "location": "Gia Lâm, Hà Nội",
+        "area": 60.0,
+        "price": 2600.0,
+        "bedrooms": 2,
+        "toilets": 1,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ.",
+        "latitude": 21.00241470336914,
+        "longitude": 105.964111328125,
+        "price_square": 43.333333333333336
     },
     {
         "title": "Cần bán căn góc 3PN 100m2 Melody Linh Đàm giá 5 tỷ thanh toán tiến độ 0981 155 ***",
@@ -1836,7 +1941,24 @@
     {
         "title": "Chủ nhà ngộp bank cần bán gấp căn hộ 97m2 - 3PN - 2VS - NT Cơ bản - tầng hướng đẹp giá nhỉnh 8 tỷ",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-nguyen-tuan-phuong-thanh-xuan-trung-prj-viha-complex/chu-nha-ngop-bank-ban-gap-97m2-3pn-2vs-nt-co-ban-tang-huong-dep-gia-nhinh-8-ty-pr41326985",
-        "location": "Thanh Xuân, Hà Nội"
+        "location": "Thanh Xuân, Hà Nội",
+        "area": 97.0,
+        "price": 8000.0,
+        "house_direction": [
+            0.7071067811865474,
+            -0.7071067811865477
+        ],
+        "balcony_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Hợp đồng mua bán",
+        "furniture": "Cơ bản",
+        "latitude": 20.9975872039795,
+        "longitude": 105.803833007813,
+        "price_square": 82.47422680412372
     },
     {
         "title": "Chính chủ bán căn hộ chung cư K6 Việt Hưng Long Biên 116m2 giá 4,5 tỷ",
@@ -1905,7 +2027,24 @@
     {
         "title": "Bán nhanh 2PN2WC full đồ mới, view vườn Nhật đẳng cấp. Khu Zenpakr, Chỉ 3890tr VinhomesOcean Park 1",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-dong-du-1-thi-tran-trau-quy-prj-the-zenpark/ban-nhanh-2pn2wc-full-do-moi-view-vuon-nhat-dang-cap-khu-zenpakr-chi-3890tr-vinhomesocean-park-1-pr41324511",
-        "location": "Gia Lâm, Hà Nội"
+        "location": "Gia Lâm, Hà Nội",
+        "area": 65.0,
+        "price": 3890.0,
+        "house_direction": [
+            -0.7071067811865477,
+            -0.7071067811865475
+        ],
+        "balcony_direction": [
+            -1.8369701987210297e-16,
+            -1.0
+        ],
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ Full đồ nội thất thiết kế, nhà vẫn mới tinh chưa ở.",
+        "latitude": 21.001741409301758,
+        "longitude": 105.94214630126953,
+        "price_square": 59.84615384615385
     },
     {
         "title": "Bán gấp 1PN + full đồ mới, view đường thoáng toà S108, giá chỉ 2tỷ 230tr Vinhomes Ocean Park 1",
@@ -2118,17 +2257,56 @@
     {
         "title": "Bán rất gấp căn hộ 2PN chung cư Dcapitale Trần Duy Hưng, giá nhỉnh 6 tỷ, full đồ đẹp, Sổ đỏ lâu dài",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-tran-duy-hung-phuong-trung-hoa-4-prj-vinhomes-d-capitale/ban-rat-gap-2pn-dcapitale-gia-nhinh-6-ty-full-do-dep-so-do-lau-dai-pr41323583",
-        "location": "Cầu Giấy, Hà Nội"
+        "location": "Cầu Giấy, Hà Nội",
+        "area": 70.0,
+        "price": 6300.0,
+        "house_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Full",
+        "latitude": 21.00580596923828,
+        "longitude": 105.79437255859375,
+        "price_square": 90.0
     },
     {
         "title": "Bán căn hộ tòa B10A khu đô thị Nam Trung Yên, phường Trung Hòa, Cầu Giấy",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-pham-hung-phuong-trung-hoa-4-prj-khu-do-thi-nam-trung-yen/ban-toa-b10a-a-cau-giay-pr41321535",
-        "location": "Cầu Giấy, Hà Nội"
+        "location": "Cầu Giấy, Hà Nội",
+        "area": 71.0,
+        "price": 4300.0,
+        "balcony_direction": [
+            0.7071067811865474,
+            -0.7071067811865477
+        ],
+        "bedrooms": 3,
+        "toilets": 1,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 21.0141487121582,
+        "longitude": 105.788726806641,
+        "price_square": 60.563380281690144
     },
     {
         "title": "Căn hộ chung cư giá 3,65 tỷ VND tại đường Lê Văn Lương, Thanh Xuân",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-le-van-luong-phuong-nhan-chinh/-gia-3-65-ty-vnd-tai-thanh-xuan-pr41323535",
-        "location": "Thanh Xuân, Hà Nội"
+        "location": "Thanh Xuân, Hà Nội",
+        "area": 60.0,
+        "price": 3650.0,
+        "house_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 21.0040874018499,
+        "longitude": 105.803114177859,
+        "price_square": 60.833333333333336
     },
     {
         "title": "Bán nhà chính chủ toà G3 CC GreenBay 54m2 đã đủ nội thất 4.3 tỷ 2 ngủ 1 wc",
@@ -3024,27 +3202,83 @@
     {
         "title": "Cần bán nhanh 77.5m2(2PN+2vs) - view hồ - bc Đông Nam - rẻ nhất bảng hàng Khai Sơn City vào ở ngay",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-phuong-ngoc-thuy-prj-khai-son-city/-ban-nhanh-77-5m2-2pn-2vs-view-bc-dong-nam-re-nhat-bang-hang-vao-o-ngay-pr41377182",
-        "location": "Long Biên, Hà Nội"
+        "location": "Long Biên, Hà Nội",
+        "area": 77.5,
+        "price": 4990.0,
+        "balcony_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Hợp đồng mua bán",
+        "furniture": "Cơ bản.",
+        "latitude": 21.052268981933594,
+        "longitude": 105.88481140136719,
+        "price_square": 64.38709677419355
     },
     {
         "title": "Bán căn góc 3pn 3wc đẹp nhất cc cao cấp The Diamond Residence, trực tiếp CĐT, cam kết giá tốt nhất",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-le-van-luong-phuong-nhan-chinh-prj-the-diamond-residence/ban-goc-3pn-3wc-dep-nhat-cc-cao-cap-truc-tiep-cdt-cam-ket-gia-tot-nhat-pr41341166",
-        "location": "Thanh Xuân, Hà Nội"
+        "location": "Thanh Xuân, Hà Nội",
+        "area": 144.0,
+        "price": 13000.0,
+        "house_direction": [
+            -1.8369701987210297e-16,
+            -1.0
+        ],
+        "balcony_direction": [
+            -0.7071067811865477,
+            -0.7071067811865475
+        ],
+        "bedrooms": 3,
+        "toilets": 3,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Cơ bản",
+        "latitude": 21.0042892703136,
+        "longitude": 105.80272066466,
+        "price_square": 90.27777777777777
     },
     {
         "title": "Bán căn hộ 3 ngủ chung cư Nơ 4A bán đảo Linh Đàm sổ đỏ chính chủ 86m2, full nội thất đẹp",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-phuong-dai-kim-prj-khu-do-thi-moi-linh-dam/ban-3-ngu-no-4a-ban-dao-so-chinh-chu-86m2-full-noi-that-dep-pr41376291",
-        "location": "Hoàng Mai, Hà Nội"
+        "location": "Hoàng Mai, Hà Nội",
+        "area": 86.0,
+        "price": 4620.0,
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ.",
+        "latitude": 20.97145652770996,
+        "longitude": 105.82817077636719,
+        "price_square": 53.72093023255814
     },
     {
         "title": "Bán gấp căn CC 1+1 Vin Ocean Park. TT giãn 2-4 năm LS 0%. Toà CC cao cấp London3 tiện ích 5 sao",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-ly-thanh-tong-xa-duong-xa-prj-the-london-vinhomes-ocean-park/ban-gap-cc-1-1-vin-tt-chi-0-6-thang-ls-0-toa-cc-cao-cap-london3-tien-ich-5-sao-pr41301499",
-        "location": "Gia Lâm, Hà Nội"
+        "location": "Gia Lâm, Hà Nội",
+        "area": 62.0,
+        "price": "deal",
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 20.99955177307129,
+        "longitude": 105.9386215209961,
+        "price_square": "deal"
     },
     {
         "title": "Quỹ căn stu,1-3PN chính chủ view đẹp, pháp lý rõ ràng, giá rẻ nhất, cắt lỗ tại Vinhomes Oceanpark",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-xa-duong-xa-prj-vinhomes-ocean-park-gia-lam/quy-view-dep-chinh-chu-ban-cat-lo-tu-300tr-so-do-chinh-chu-mien-phi-mg-tro-vay-toi-70-pr39114589",
-        "location": "Gia Lâm, Hà Nội"
+        "location": "Gia Lâm, Hà Nội",
+        "area": 59.0,
+        "price": 2600.0,
+        "bedrooms": 2,
+        "toilets": 1,
+        "legal_status": "Sổ đỏ/ Sổ hồng.",
+        "latitude": 21.0024147033691,
+        "longitude": 105.964111328125,
+        "price_square": 44.067796610169495
     },
     {
         "title": "Cơ hội sở hữu căn hộ cao cấp Vinhomes Ocean Park, giá ưu đãi, tiện ích vượt trội, LH 0911 269 ***",
@@ -3059,27 +3293,76 @@
     {
         "title": "Chính chủ bán 1PN rẻ nhất The London Ocean Park vay miễn lãi đến T3 2027 Giá đợt 1, chiết khấu 4%",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-ly-thanh-tong-xa-duong-xa-prj-the-london-vinhomes-ocean-park/chinh-chu-ban-1pn-re-nhat-oceanpark-vay-mien-lai-den-t3-2027-gia-dot-1-chiet-khau-4-pr41371115",
-        "location": "Gia Lâm, Hà Nội"
+        "location": "Gia Lâm, Hà Nội",
+        "area": 46.4,
+        "price": 2930.0,
+        "house_direction": [
+            -1.8369701987210297e-16,
+            -1.0
+        ],
+        "balcony_direction": [
+            -1.8369701987210297e-16,
+            -1.0
+        ],
+        "bedrooms": 1,
+        "toilets": 1,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 20.99955177307129,
+        "longitude": 105.9386215209961,
+        "price_square": 63.146551724137936
     },
     {
         "title": "Cập nhật quỹ căn bán chung cư Sunshine City Ciputra tháng 11/2024 hàng đẹp - giá cạnh tranh",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-phuong-dong-ngac-prj-sunshine-city/mua-nha-don-tet-an-vui-cap-nhat-danh-sach-ban-moi-nhat-gia-uu-dai-pr38855157",
-        "location": "Bắc Từ Liêm, Hà Nội"
+        "location": "Bắc Từ Liêm, Hà Nội",
+        "area": 80.3,
+        "price": 5300.0,
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 21.0914440155029,
+        "longitude": 105.784721374512,
+        "price_square": 66.0024906600249
     },
     {
         "title": "Quỹ căn ngoại giao Viha leciva 107 Nguyễn Tuân Liên hệ để được chính sách chiết khấu tốt nhất.",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-nguyen-tuan-phuong-thanh-xuan-trung-prj-viha-complex/quy-ngoai-giao-leciva-107-lien-he-de-duoc-chinh-sach-chiet-khau-tot-nhat-pr41369854",
-        "location": "Thanh Xuân, Hà Nội"
+        "location": "Thanh Xuân, Hà Nội",
+        "area": 73.0,
+        "price": 7100.0,
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 20.997587203979492,
+        "longitude": 105.8038330078125,
+        "price_square": 97.26027397260275
     },
     {
         "title": "Độc quyền Căn góc 112m2 lâu dài giá 6 tỷ. Căn góc 97m2 view hồ giá 4,7 tỷ",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-tran-phu-phuong-van-quan-prj-grand-sunlake/mo-ban-quy-ngoai-giao-tang-dep-gia-tot-nhat-thi-truong-so-huu-lau-dai-truc-tiep-cdt-pr41039213",
-        "location": "Hà Đông, Hà Nội"
+        "location": "Hà Đông, Hà Nội",
+        "area": 97.0,
+        "price": 4700.0,
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Hợp đồng mua bán",
+        "latitude": 20.979528427124,
+        "longitude": 105.787567138672,
+        "price_square": 48.45360824742268
     },
     {
         "title": "QUỸ CĂN CHUYỂN NHƯỢNG LUMI HANOI GĐ1,2,3 GIÁ TỐT - Lựa chọn tốt hơn rất nhiều so với The Sola Park",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-dai-lo-thang-long-phuong-tay-mo-prj-lumi-hanoi/quy-chuyen-nhuong-gd1-2-3-gia-tot-lua-chon-tot-hon-rat-nhieu-so-voi-the-sola-park-pr41371316",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 54.0,
+        "price": 3800.0,
+        "bedrooms": 2,
+        "latitude": 21.011585235595703,
+        "longitude": 105.73583984375,
+        "price_square": 70.37037037037037
     },
     {
         "title": "PKD dự án Lumi Hà Nội tổng hợp quỹ hàng chuyển nhượng 1-2-3PN, Pent, Duplex đẹp nhất dự án giá tốt",
@@ -3310,7 +3593,14 @@
     {
         "title": "Mở bán căn hộ The Matrix One GĐ2 giá chỉ 9,6 tỷ đường Mễ Trì, Nam Từ Liêm, Hà Nội",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-me-tri-phuong-me-tri-prj-the-matrix-one/mo-ban-max-gd2-gia-chi-9-6-ty-nam-tu-liem-ha-noi-pr41316818",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 80.0,
+        "price": 9600.0,
+        "bedrooms": 2,
+        "toilets": 2,
+        "latitude": 21.00938606262207,
+        "longitude": 105.77387237548828,
+        "price_square": 120.0
     },
     {
         "title": "Căn hộ khép kín cao cấp bậc nhất bờ Đông Hà Nội",
@@ -3465,7 +3755,20 @@
     {
         "title": "Em bán căn 76m gồm 2PN2VS hướng mát, giá rẻ nhất thị trường em cam kết chuẩn thông tin",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-cau-giay-phuong-quan-hoa-prj-cau-giay-center-point/hang-hiem-goc-sieu-dep-tang-dep-ban-dong-nam-trung-tam-so-do-san-sang-moi-ae-pr38829871",
-        "location": "Cầu Giấy, Hà Nội"
+        "location": "Cầu Giấy, Hà Nội",
+        "area": 76.0,
+        "price": 6000.0,
+        "balcony_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 21.0322113037109,
+        "longitude": 105.799697875977,
+        "price_square": 78.94736842105263
     },
     {
         "title": "Căn 3 ngủ giá tốt nhất The Nine, hơn 7 tỷ. Quỹ căn 2-3 ngủ giao dịch T10, giá tốt nhất, hỗ trợ free",
@@ -3587,7 +3890,24 @@
     {
         "title": "Chính chủ bán 3 căn 85m2 (2 + 1) nhà đẹp y hình. sổ đỏ cất két, xem nhà 24/7 lh: 0393 238 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-huynh-van-nghe-phuong-sai-dong-prj-le-grand-jardin-sai-dong/chinh-chu-ban-3-85m2-2-1-nha-dep-y-hinh-so-do-cat-ket-xem-nha-24-7-lh-pr41314057",
-        "location": "Long Biên, Hà Nội"
+        "location": "Long Biên, Hà Nội",
+        "area": 85.0,
+        "price": 4970.0,
+        "house_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "balcony_direction": [
+            0.7071067811865474,
+            -0.7071067811865477
+        ],
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 21.035978,
+        "longitude": 105.906296,
+        "price_square": 58.470588235294116
     },
     {
         "title": "Căn hộ Goldmark City giá chỉ 55 triệu/m2 tại Bắc Từ Liêm",
@@ -4095,12 +4415,42 @@
     {
         "title": "Lhe 0962 161 *** Studio Masteri toà B 33m2 thông thuỷ view trực diện hồ, tầng trung 2.85 tỷ bao phí",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-phuong-tay-mo-prj-masteri-west-heights/lhe-studio-toa-b-33m2-tng-thuy-view-truc-dien-tang-trung-2-85-ty-bao-phi-pr41309636",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 33.0,
+        "price": 2850.0,
+        "house_direction": [
+            -1.8369701987210297e-16,
+            -1.0
+        ],
+        "bedrooms": 1,
+        "toilets": 1,
+        "legal_status": "Hợp đồng mua bán",
+        "furniture": "Cơ bản",
+        "latitude": 21.006206512451172,
+        "longitude": 105.73707580566406,
+        "price_square": 86.36363636363636
     },
     {
         "title": "Chính chủ bán gấp trong tuần: 3PN - 2WC, DT 93m2, tòa G2 - Vinhomes Green Bay",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-dai-lo-thang-long-phuong-me-tri-prj-vinhomes-green-bay-me-tri/chinh-chu-ban-gap-trong-tuan-3pn-2wc-dt-93m2-toa-g2-bay-pr41060943",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 93.0,
+        "price": 5400.0,
+        "house_direction": [
+            0.7071067811865474,
+            -0.7071067811865477
+        ],
+        "balcony_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Có sổ.",
+        "furniture": "Đầy đủ nội thất. Nội thất hoàn thiện đầy đủ cho gia đình ở lâu dài. Nội thất hoàn thiện đầy đủ cho gia đình ở lâu dài. Nội thất hoàn thiện đầy đủ cho gia đình ở lâu dài.",
+        "latitude": 20.9989585876465,
+        "longitude": 105.788032531738,
+        "price_square": 58.064516129032256
     },
     {
         "title": "Tôi cần bán chung cư Licogi 13 Khuất Duy Tiến CĂN góc 130m2, 3 ngủ, 2 vs chỉ 3. X tỷ",
@@ -4932,7 +5282,20 @@
     {
         "title": "Bán chung cư Vinhome Smart city 55 m2 căn 2N giá 3 tỷ 3xx giá siêu rẻ",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-phuong-dai-mo/ban-vinhome-smart-city-55-m2-2n-gia-3-ty-3xx-gia-sieu-re-pr41358713",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 55.0,
+        "price": 3350.0,
+        "balcony_direction": [
+            0.7071067811865474,
+            -0.7071067811865477
+        ],
+        "bedrooms": 2,
+        "toilets": 1,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Cơ bản",
+        "latitude": 21.008962631225586,
+        "longitude": 105.74391174316406,
+        "price_square": 60.90909090909091
     },
     {
         "title": "Xem nhà 24/7: Bình Minh Land chuyên bán CC Lancaster 20 Núi Trúc 100% có sổ giá tốt nhất thị trường",
@@ -5096,12 +5459,29 @@
     {
         "title": "Chính chủ bán căn trục 08 giá 13,x tỷ (bao phí trừ lại 5%) Sunshine Golden River 0962 346 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-phuong-phu-thuong-1-prj-sunshine-golden-river/ban-09-cat-lo-chi-11-x-ty-pr40115077",
-        "location": "Tây Hồ, Hà Nội"
+        "location": "Tây Hồ, Hà Nội",
+        "area": 160.0,
+        "price": "deal",
+        "bedrooms": 3,
+        "toilets": 2,
+        "furniture": "Nội thất: Nguyên bản chủ đầu tư.",
+        "latitude": 21.078651428222656,
+        "longitude": 105.8026123046875,
+        "price_square": "deal"
     },
     {
         "title": "Quỹ ngoại giao đặc biệt dự án Viha Complex - Viha Leciva, cam kết rẻ nhất Lh: 0989 846 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-nguyen-tuan-phuong-thanh-xuan-trung-prj-viha-complex/quy-ngoai-giao-dac-biet-du-an-leciva-cam-ket-re-nhat-lh-pr41061051",
-        "location": "Thanh Xuân, Hà Nội"
+        "location": "Thanh Xuân, Hà Nội",
+        "area": 79.0,
+        "price": "deal",
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Hợp đồng mua bán",
+        "furniture": "Đầy đủ",
+        "latitude": 20.997587,
+        "longitude": 105.80383,
+        "price_square": "deal"
     },
     {
         "title": "Bán căn 3PN rộng 172m2 view bao trọn hồ công viên ở Mandarin Garden. Giá tốt nhỉnh 100 triệu/m2",
@@ -6675,7 +7055,24 @@
     {
         "title": "Cần bán gấp CH 2PN, tầng trung, full nội thất, view quảng trường tại Goldmark City giá 4,6 tỷ",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-ho-tung-mau-phuong-phu-dien-prj-goldmark-city/-ban-gap-ch-2pn-tang-trung-full-noi-that-view-quang-truong-tai-gia-4-6-ty-pr41343954",
-        "location": "Bắc Từ Liêm, Hà Nội"
+        "location": "Bắc Từ Liêm, Hà Nội",
+        "area": 84.0,
+        "price": 4600.0,
+        "house_direction": [
+            0.7071067811865474,
+            -0.7071067811865477
+        ],
+        "balcony_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 21.0399785510881,
+        "longitude": 105.766276089532,
+        "price_square": 54.76190476190476
     },
     {
         "title": "Chính chủ cần bán gấp căn hộ: 4.1tỷ - 2PN - 2VS, DT 70m2, tòa G2 Vinhomes Green Bay",
@@ -7036,7 +7433,16 @@
     {
         "title": "Phải thật nhanh tay! Chỉ 47tr/m2 căn 2PN 74 - 84m2 chung cư Melody Linh Đàm vay bank 70% trong 24T",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-bang-liet-phuong-hoang-liet-prj-ha-noi-melody-residences/ulatroi-phai-nhanh-chi-39tr-m2-2pn-74m2-linh-dam-vay-bank-toi-80-trong-2-nam-pr40979916",
-        "location": "Hoàng Mai, Hà Nội"
+        "location": "Hoàng Mai, Hà Nội",
+        "area": 74.0,
+        "price": 3478.0,
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 20.9585018157959,
+        "longitude": 105.826347351074,
+        "price_square": 47.0
     },
     {
         "title": "Suất ngoại giao, không mua chênh, chọn căn theo sở thích, booking CĐT có hoàn lại, chiết khấu 13%",
@@ -7097,7 +7503,24 @@
     {
         "title": "Chỉ từ 1,4 tỷ căn hộ cao cấp Hà Nội Melody Linh Đàm - LS 0% 24 tháng - CK lên tới 15%",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-bang-liet-phuong-hoang-liet-prj-ha-noi-melody-residences/chi-tu-1-4-ty-cao-cap-linh-dam-ls-0-24-tng-ck-len-toi-15-pr41292055",
-        "location": "Hoàng Mai, Hà Nội"
+        "location": "Hoàng Mai, Hà Nội",
+        "area": 68.0,
+        "price": 4300.0,
+        "house_direction": [
+            6.123233995736766e-17,
+            1.0
+        ],
+        "balcony_direction": [
+            6.123233995736766e-17,
+            1.0
+        ],
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Hợp đồng mua bán",
+        "furniture": "Cơ bản",
+        "latitude": 20.9585018157959,
+        "longitude": 105.82634735107422,
+        "price_square": 63.23529411764706
     },
     {
         "title": "Căn hộ 3PN Imperia Sola Park giá chỉ 5,2 tỷ tại Nam Từ Liêm (69tr/m2)",
@@ -7146,7 +7569,16 @@
     {
         "title": "Quỹ căn ngoại giao 2pn, 3pn, 4pn giá tốt nhất tháng 10/2024 từ PKD CĐT BRG - 25 Lê Văn Lương",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-le-van-luong-phuong-nhan-chinh-prj-the-diamond-residence/quy-ngoai-giao-2pn-3pn-4pn-gia-tot-nhat-thang-10-2024-tu-pkd-cdt-tai-brg-25-luong-pr41324543",
-        "location": "Thanh Xuân, Hà Nội"
+        "location": "Thanh Xuân, Hà Nội",
+        "area": 105.0,
+        "price": 9000.0,
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 21.0052261352539,
+        "longitude": 105.805061340332,
+        "price_square": 85.71428571428571
     },
     {
         "title": "Quá rẻ - 11 căn chuyển nhượng 1PN-2PN-3PN giá 2,58 tỷ bao phí - Full Đồ - về ở ngay - Có hỗ trợ vay",
@@ -7165,7 +7597,15 @@
     {
         "title": "Quỹ căn chuyển nhượng giá tốt mới nhất Heritage Westlake. View trọn Hồ Tây, full nội thất cao cấp.",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-lac-long-quan-phuong-phu-thuong-1-prj-heritage-west-lake/quy-chuyen-nhuong-gia-tot-moi-nhat-westlake-view-tron-tay-full-noi-that-cao-cap-pr41322549",
-        "location": "Tây Hồ, Hà Nội"
+        "location": "Tây Hồ, Hà Nội",
+        "area": 93.0,
+        "price": 12900.0,
+        "bedrooms": 3,
+        "toilets": 2,
+        "furniture": "Bàn giao nội thất nhập khẩu Châu Âu.",
+        "latitude": 21.07284927368164,
+        "longitude": 105.81243133544922,
+        "price_square": 138.70967741935485
     },
     {
         "title": "Cần bán 04 căn ngoại giao: Stu - 1tỷ780; 1PN+ 2tỷ55; 2PN - 3.7 tỷ; 3PN - 5.3tỷ Masteri West Heights",
@@ -7258,7 +7698,18 @@
     {
         "title": "Em Diệp nhận booking trục căn hot nhất dự án Melody Linh Đàm, căn đẹp giá tốt, 0392 942 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-bang-liet-phuong-hoang-liet-prj-ha-noi-melody-residences/em-diep-nhan-booking-truc-hot-nhat-du-an-linh-dam-dep-gia-tot-pr41321280",
-        "location": "Hoàng Mai, Hà Nội"
+        "location": "Hoàng Mai, Hà Nội",
+        "area": 68.0,
+        "price": "deal",
+        "balcony_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "bedrooms": 2,
+        "toilets": 2,
+        "latitude": 20.9585018157959,
+        "longitude": 105.826347351074,
+        "price_square": "deal"
     },
     {
         "title": "The Sola Park quỹ 150 căn G5 + G6 căn 1-2-3PN từ 62tr/m2, tặng 138tr+CK 16%, 2 hầm + cạnh nhà để xe",
@@ -7316,12 +7767,31 @@
     {
         "title": "Độc quyền quỹ căn cc giá tốt nhất tại ocean park 1 hn, các phân khu S, P, zurich, Ruby, Be, LD",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-xa-duong-xa-prj-vinhomes-ocean-park-gia-lam/doc-quyen-quy-cc-tot-nhat-tai-1-hn-cac-phan-khu-s-p-zurich-ruby-be-ld-pr41320178",
-        "location": "Gia Lâm, Hà Nội"
+        "location": "Gia Lâm, Hà Nội",
+        "area": 56.0,
+        "price": 3080.0,
+        "house_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "bedrooms": 2,
+        "toilets": 2,
+        "latitude": 20.993993759155273,
+        "longitude": 105.95020294189453,
+        "price_square": 55.0
     },
     {
         "title": "Booking The Senique giá chỉ 68tr/m2, CK 13%, cam kết lấy căn đúng nhu cầu, 1PN-2PN-3PN-4PN & Duplex",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-xa-duong-xa-prj-chung-cu-the-senique-hanoi/booking-gia-chi-68tr-m2-ck-13-cam-ket-lay-dung-nhu-cau-1pn-2pn-3pn-4pn-duplex-pr41271936",
-        "location": "Gia Lâm, Hà Nội"
+        "location": "Gia Lâm, Hà Nội",
+        "area": 64.0,
+        "price": "deal",
+        "bedrooms": 2,
+        "toilets": 2,
+        "furniture": "Đầy đủ",
+        "latitude": 20.99988555908203,
+        "longitude": 105.95375061035156,
+        "price_square": "deal"
     },
     {
         "title": "Cập nhật quỹ căn Heritage West Lake 2PN 93m2, 3PN 145-149m2, 4PN 180m2, duplex 267m2 tháng 10.2024",
@@ -9049,7 +9519,15 @@
     {
         "title": "Bán CH 145m2 (3PN, 2VS) 2 ban công mát mẻ tầng trung toà CT2, giá 5.x tỷ, full đồ đẹp xịn",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-to-huu-phuong-la-khe-prj-the-pride/ban-ch-145m2-3pn-2vs-2-ban-cong-mat-me-tang-trung-gia-3-x-ty-full-do-dep-xin-pr38412610",
-        "location": "Hà Đông, Hà Nội"
+        "location": "Hà Đông, Hà Nội",
+        "area": 145.0,
+        "price": "deal",
+        "bedrooms": 3,
+        "toilets": 2,
+        "furniture": "Full đồ.",
+        "latitude": 20.9760246276855,
+        "longitude": 105.761596679688,
+        "price_square": "deal"
     },
     {
         "title": "Chính chủ bán căn hộ 2216A Gemek Tower",
@@ -9248,22 +9726,75 @@
     {
         "title": "Chính chủ bán 12 căn: Studio - 1.25 tỷ; 2PN - 2.8 tỷ; 70m2 - 3.8 tỷ; 3PN - 4.85 tỷ. VH Green Bay",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-dai-lo-thang-long-phuong-me-tri-prj-vinhomes-green-bay-me-tri/chinh-chu-ban-12-studio-1-25-ty-2pn-2-8-ty-70m2-3-8-ty-3pn-4-85-ty-vh-bay-pr41060948",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 70.0,
+        "price": 4200.0,
+        "bedrooms": 2,
+        "toilets": 2,
+        "furniture": "Toàn bộ nội thất năm ngoái nên rất sạch sẽ và mới.",
+        "latitude": 20.9989585876465,
+        "longitude": 105.788032531738,
+        "price_square": 60.0
     },
     {
         "title": "Legend chính chủ bán căn góc 2PN, DT: 72.5m2. ban công ĐN, full đồ cơ bản. Tầng 19 giá 6tỷ2",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-nguyen-tuan-phuong-nhan-chinh-prj-the-legend-tower-109-nguyen-tuan/-chu-ban-goc-3pn-2vc-dt-106m2-ban-cong-dn-full-do-nha-moi-tang-16-gia-7ty8-pr40615122",
-        "location": "Thanh Xuân, Hà Nội"
+        "location": "Thanh Xuân, Hà Nội",
+        "area": 72.5,
+        "price": 6200.0,
+        "house_direction": [
+            -1.8369701987210297e-16,
+            -1.0
+        ],
+        "balcony_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "latitude": 21.0046138763428,
+        "longitude": 105.804077148438,
+        "price_square": 85.51724137931035
     },
     {
         "title": "Hàng hiếm tại Vinhomes West Point, 4,9 tỷ, 70m2, 3PN + 2 WC/PT, đầy đủ nội thất - LH: 0344 888 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-pham-hung-phuong-me-tri-prj-vinhomes-west-point/hang-hiem-tai-4-9-ty-70m2-3pn-2-wc-pt-day-du-noi-that-lh-pr41349159",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 70.0,
+        "price": 4900.0,
+        "house_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "balcony_direction": [
+            -0.7071067811865477,
+            -0.7071067811865475
+        ],
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ.",
+        "latitude": 21.011882781982422,
+        "longitude": 105.78644561767578,
+        "price_square": 70.0
     },
     {
         "title": "Chính chủ bán căn góc 140m2, 3PN2WC tầng trung, ban công Nam tòa Paragon Cầu Giấy",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-duy-tan-phuong-dich-vong-hau-prj-ha-noi-paragon/chinh-chu-ban-goc-140m2-3pn2wc-tang-trung-ban-cong-nam-toa-cau-giay-pr41348586",
-        "location": "Cầu Giấy, Hà Nội"
+        "location": "Cầu Giấy, Hà Nội",
+        "area": 140.0,
+        "price": "deal",
+        "balcony_direction": [
+            6.123233995736766e-17,
+            1.0
+        ],
+        "bedrooms": 3,
+        "toilets": 2,
+        "furniture": "Nội thất nguyên bản CĐT bàn giao đã có đầy đủ điều hòa âm trần, thiết bị vệ sinh, nóng lạnh, sàn gỗ, khóa từ,...",
+        "latitude": 21.031177520751953,
+        "longitude": 105.78939819335938,
+        "price_square": "deal"
     },
     {
         "title": "Căn hộ 2 ngủ khu Pavilion. 2 hầm gửi xe. Hỗ trợ vay 70%. Nhận nhà ở ngay. LH tư vấn 0971 478 ***",
@@ -9395,7 +9926,24 @@
     {
         "title": "Vinhomes Green Bay chính chủ bán gấp căn 2PN, dt 72m2, tầng trung, view siêu thoáng, giá 3,6 tỷ.",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-dai-lo-thang-long-phuong-me-tri-prj-vinhomes-green-bay-me-tri/-chinh-chu-gui-ban-gap-2pn2vs-70m2-gia-3-6-ty-gia-tot-nhat-thi-truong-pr41247387",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 72.0,
+        "price": 3600.0,
+        "house_direction": [
+            -0.7071067811865477,
+            -0.7071067811865475
+        ],
+        "balcony_direction": [
+            -1.8369701987210297e-16,
+            -1.0
+        ],
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 20.998958587646484,
+        "longitude": 105.78803253173828,
+        "price_square": 50.0
     },
     {
         "title": "BÁN GẤP CĂN 4PN VINHOMES WEST POINT 135m2 GIÁ 8.3 TỶ . LH 0934 998 ***",
@@ -9405,12 +9953,27 @@
     {
         "title": "(Quyết giá thật). Quỹ căn hộ Tháng 10/2024 1PN 2PN + 3PN Duplex chủ nhà gửi bán chung cư Royal City",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-nguyen-trai-phuong-thuong-dinh-prj-royal-city/-quyet-gia-that-quy-thang-08-2024-1pn-2pn-3pn-duplex-chu-nha-gui-ban-city-pr40671486",
-        "location": "Thanh Xuân, Hà Nội"
+        "location": "Thanh Xuân, Hà Nội",
+        "area": 136.0,
+        "price": 9500.0,
+        "bedrooms": 2,
+        "toilets": 2,
+        "latitude": 21.002666473388672,
+        "longitude": 105.8154296875,
+        "price_square": 69.8529411764706
     },
     {
         "title": "Bán căn siêu phẩm 3 ngủ 5,9 tỷ, 100m2, căn to nhất Vin Smart full đồ đẹp long lanh",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-phuong-tay-mo-prj-vinhomes-smart-city/ban-sieu-pham-3-ngu-5-9-ty-100m-to-nhat-vin-full-do-dep-long-lanh-pr41298562",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 100.0,
+        "price": 6000.0,
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "latitude": 21.008962631225586,
+        "longitude": 105.74391174316406,
+        "price_square": 60.0
     },
     {
         "title": "Chỉ từ 70 triệu/m2 sở hữu ngay căn hộ khách sạn hạng sang, tại trung tâm quận Đống Đa",
@@ -9525,12 +10088,28 @@
     {
         "title": "Bán căn góc đẹp 3 ngủ 113,6m2 toà cc cao cấp VP4 Linh Đàm. Nhà đẹp đủ đồ",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-nguyen-duy-trinh-phuong-hoang-liet-prj-vp4-linh-dam/ban-goc-dep-3-ngu-113-6m2-toa-cc-cao-cap-nha-dep-du-do-pr41347529",
-        "location": "Hoàng Mai, Hà Nội"
+        "location": "Hoàng Mai, Hà Nội",
+        "area": 113.6,
+        "price": 8100.0,
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Cơ bản.",
+        "latitude": 20.963829040527344,
+        "longitude": 105.83186340332031,
+        "price_square": 71.30281690140845
     },
     {
         "title": "Bán căn hộ 2PN 2VS giá rẻ nhà đẹp ở dự án Mandarin Garden Hoàng Minh Giám. LH 0971 552 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-hoang-minh-giam-phuong-trung-hoa-4-prj-mandarin-garden/ban-duplex-cuc-dep-o-du-an-lh-pr38581809",
-        "location": "Cầu Giấy, Hà Nội"
+        "location": "Cầu Giấy, Hà Nội",
+        "area": 130.0,
+        "price": "deal",
+        "bedrooms": 2,
+        "toilets": 2,
+        "latitude": 21.0044841766357,
+        "longitude": 105.798629760742,
+        "price_square": "deal"
     },
     {
         "title": "Bán quỹ căn 2/3/4 ngủ tại dự án HPC Landmark 105 giá tốt nhất cập nhật liên tục. Từ 4,5 tỷ",
@@ -9711,7 +10290,24 @@
     {
         "title": "(Chính chủ) bán căn hộ số 7 chung cư M3 - M4 Nguyễn Chí Thanh, QC không gọi làm phiền",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-nguyen-chi-thanh-phuong-lang-ha-prj-chung-cu-m3-m4-nguyen-chi-thanh/-nh-chu-ban-so-7-qc-kng-goi-lam-phien-pr41274215",
-        "location": "Đống Đa, Hà Nội"
+        "location": "Đống Đa, Hà Nội",
+        "area": 122.0,
+        "price": 8784.0,
+        "house_direction": [
+            -0.7071067811865477,
+            -0.7071067811865475
+        ],
+        "balcony_direction": [
+            -1.8369701987210297e-16,
+            -1.0
+        ],
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Full",
+        "latitude": 21.020200729370117,
+        "longitude": 105.80887603759766,
+        "price_square": 72.0
     },
     {
         "title": "Bán căn góc 2N đồ cơ bản hoa hậu chung cư Thiên Niên Kỷ. Lh: 0904 994 ***",
@@ -10569,7 +11165,14 @@
     {
         "title": "(Bán) siêu phẩm 4PN 125m2 Vinhomes West Point view khách sạn Marriot giá 10 tỷ LH: 0365 775 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-pham-hung-phuong-me-tri-prj-vinhomes-west-point/-ban-sieu-4pn-125m2-view-khach-san-mariot-gia-10-ty-lh-pr41286285",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 125.0,
+        "price": 10000.0,
+        "bedrooms": 4,
+        "toilets": 3,
+        "latitude": 21.011882781982422,
+        "longitude": 105.78644561767578,
+        "price_square": 80.0
     },
     {
         "title": "Chuyên căn hộ cao cấp 25 Lê Văn Lương diện tích: 120m2 - 145m2 - 151m2 - 202m2. Liên hệ 0945 725 ***",
@@ -11538,7 +12141,14 @@
     {
         "title": "Quỹ căn chuyển nhượng từ 1-2-3-4 phòng ngủ sẵn sổ đỏ cập nhật liên tục tại Green Diamond 93 Láng Hạ",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-pho-lang-ha-phuong-lang-ha-prj-green-diamond-93-lang-ha/quy-chuyen-nhuong-tu-1-2-3-4-phong-ngu-san-so-do-cap-nhat-lien-tuc-tai-93-ha-pr40616551",
-        "location": "Đống Đa, Hà Nội"
+        "location": "Đống Đa, Hà Nội",
+        "area": 91.8,
+        "price": 9500.0,
+        "bedrooms": 2,
+        "furniture": "Full đồ nội thất.",
+        "latitude": 21.016826629638672,
+        "longitude": 105.81522369384766,
+        "price_square": 103.48583877995642
     },
     {
         "title": "Cần bán nhanh căn 2 pn 1 wc 2,1 tỷ TT Cơ Khí 129 Nguyễn Trãi - Thanh Xuân 0987 063 ***",
@@ -12920,17 +13530,45 @@
     {
         "title": "Độc quyền quỹ căn hộ 2 - 3PN An Bình City cần bán gấp cắt lỗ, cập nhật hàng ngày LH: Mai 0399 028 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-pham-van-dong-phuong-co-nhue-1-prj-an-binh-city/-tin-moi-nhat-cap-nhat-quy-3-2-ngu-b-gap-trong-thg-12-lien-he-ngay-pr38770890",
-        "location": "Bắc Từ Liêm, Hà Nội"
+        "location": "Bắc Từ Liêm, Hà Nội",
+        "area": 90.0,
+        "price": 5800.0,
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 21.049566,
+        "longitude": 105.778595,
+        "price_square": 64.44444444444444
     },
     {
         "title": "Bán quỹ căn 2 - 3PN Hoàng Thành Pearl Mỹ Đình, nhà mới sẵn nội thất giá rẻ nhất LH: 0906 241 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-nguyen-van-giap-phuong-cau-dien-prj-hoang-thanh-pearl/ban-quy-2-3pn-my-dinh-nha-moi-san-noi-that-gia-re-nhat-lh-pr41181094",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 113.0,
+        "price": 7400.0,
+        "balcony_direction": [
+            1.0,
+            0.0
+        ],
+        "bedrooms": 3,
+        "toilets": 2,
+        "furniture": "Cơ bản.",
+        "latitude": 21.0401592254639,
+        "longitude": 105.76131439209,
+        "price_square": 65.48672566371681
     },
     {
         "title": "Cơ hội vàng để sở hữu căn hộ Sunshine City - Đỉnh cao căn hộ cao cấp, giá tốt nhất thị trường!",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-phuong-dong-ngac-prj-sunshine-city/co-i-vang-de-so-huu-dinh-cao-cao-cap-gia-tot-nhat-thi-truong-pr41355066",
-        "location": "Bắc Từ Liêm, Hà Nội"
+        "location": "Bắc Từ Liêm, Hà Nội",
+        "area": 97.0,
+        "price": 6500.0,
+        "bedrooms": 3,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "latitude": 21.084556919336432,
+        "longitude": 105.79090118408205,
+        "price_square": 67.01030927835052
     },
     {
         "title": "Căn hộ 1N + Masterise Vinhomes Cổ Loa Đông Anh giá từ 3,2 tỉ đồng",
@@ -12951,7 +13589,24 @@
     {
         "title": "Độc quyền quỹ căn 2-3-4 ngủ và Duplex tại Vinhomes Gardenia bán gấp cập nhật hàng ngày. 0988 121 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-ham-nghi-phuong-cau-dien-prj-vinhomes-gardenia/bds-ama-group-tong-hop-2-3-4-duplex-ngu-gia-tot-nhat-hom-nay-lh-hang-093615666-pr38632324",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 80.0,
+        "price": 5800.0,
+        "house_direction": [
+            0.7071067811865474,
+            -0.7071067811865477
+        ],
+        "balcony_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 21.0365676879883,
+        "longitude": 105.760482788086,
+        "price_square": 72.5
     },
     {
         "title": "Tổng hợp quỹ căn mới nhất tại Starlake tháng 10/2024 căn góc 2 - 3PN đẹp giá nhỉnh 9 tỷ/căn full đồ",
@@ -13577,17 +14232,47 @@
     {
         "title": "Chính chủ gửi bán căn hộ chung cư 3 ngủ tòa Golden Field, 24 Nguyễn Cơ Thạch, LH: 0818 340 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-nguyen-co-thach-phuong-cau-dien-prj-golden-field-my-dinh/chinh-chu-ban-nhanh-goc-3ngu-2vs-1kho-tai-toa-fiel-lh-pr39468744",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 106.0,
+        "price": 5800.0,
+        "balcony_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "- Sổ đỏ cất két sẵn sàng giao dịch.",
+        "furniture": "Đầy đủ - Full nội thất.",
+        "latitude": 21.0351047515869,
+        "longitude": 105.76554107666,
+        "price_square": 54.716981132075475
     },
     {
         "title": "Chính chủ cần bán CH 135m2 3PN2WC toà Iris Garden, full NT đẹp, giá chỉ 7. X tỷ LH: 0968 748 ***",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-tran-huu-duc-phuong-cau-dien-prj-iris-garden/-ban-tai-nam-tu-liem-ha-noi-pr41315122",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 135.0,
+        "price": "deal",
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "latitude": 21.03116226196289,
+        "longitude": 105.76041412353516,
+        "price_square": "deal"
     },
     {
         "title": "Bán căn hộ Times City giá chỉ 7,5 tỷ VND tại Hà Nội",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-minh-khai-phuong-vinh-tuy-prj-times-city/ban-gia-chi-7-5-ty-vnd-tai-ha-noi-pr41322363",
-        "location": "Hai Bà Trưng, Hà Nội"
+        "location": "Hai Bà Trưng, Hà Nội",
+        "area": 83.0,
+        "price": 7500.0,
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 20.9980928762053,
+        "longitude": 105.866887143341,
+        "price_square": 90.36144578313252
     },
     {
         "title": "Bán căn hộ chung cư Tây Nam Linh Đàm , nhà của chủ đầu tư hud",
@@ -13735,7 +14420,15 @@
     {
         "title": "Bán siêu phẩm 2 ngủ 54m2, full đồ giá 3.4 tỷ, Vinhomes Smart",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-phuong-tay-mo-prj-vinhomes-smart-city/ban-sieu-pham-2-ngu-54m-full-do-gia-3-4-ty-smart-pr41322120",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 54.0,
+        "price": 3500.0,
+        "bedrooms": 2,
+        "toilets": 1,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "latitude": 21.008962631225586,
+        "longitude": 105.74391174316406,
+        "price_square": 64.81481481481481
     },
     {
         "title": "Bán căn hộ Lạc Long Quân - ven Hồ Tây (34m2 - 52m2) full đồ",
@@ -14246,12 +14939,46 @@
     {
         "title": "Chính chủ bán căn hộ số 6 tòa P1 Mỹ Đình Pearl. DT 94m2 TK 3PN 2VS. Lên xem thực tế gặp trực tiếp",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-phuong-phu-do-prj-my-dinh-pearl/chinh-chu-ban-so-6-toa-p1-dt-94m-tk-3pn-2vs-len-xem-thuc-te-gap-truc-tiep-pr41318351",
-        "location": "Nam Từ Liêm, Hà Nội"
+        "location": "Nam Từ Liêm, Hà Nội",
+        "area": 94.0,
+        "price": "deal",
+        "house_direction": [
+            -0.7071067811865477,
+            -0.7071067811865475
+        ],
+        "balcony_direction": [
+            -1.8369701987210297e-16,
+            -1.0
+        ],
+        "bedrooms": 3,
+        "toilets": 2,
+        "legal_status": "Sổ đỏ/ Sổ hồng",
+        "furniture": "Đầy đủ",
+        "latitude": 21.012432098388672,
+        "longitude": 105.76739501953125,
+        "price_square": "deal"
     },
     {
         "title": "Độc quyền căn hộ 2N Masteri Grand Avenue tại Vin Cổ Loa view cầu Nhật Tân và thành phố Thông Minh",
         "url": "https://batdongsan.com.vn/ban-can-ho-chung-cu-duong-truong-sa-xa-dong-hoi-prj-vinhomes-co-loa/doc-quyen-2n-masteri-grand-avenue-tai-vin-view-cau-nhat-tan-va-thanh-p-tng-minh-pr41318141",
-        "location": "Đông Anh, Hà Nội"
+        "location": "Đông Anh, Hà Nội",
+        "area": 52.4,
+        "price": 5030.4,
+        "house_direction": [
+            -1.0,
+            1.2246467991473532e-16
+        ],
+        "balcony_direction": [
+            0.7071067811865474,
+            -0.7071067811865477
+        ],
+        "bedrooms": 2,
+        "toilets": 2,
+        "legal_status": "Hợp đồng mua bán",
+        "furniture": "Cơ bản",
+        "latitude": 21.115686416625977,
+        "longitude": 105.87013244628906,
+        "price_square": 96.0
     },
     {
         "title": "Cần bán gấp căn 2 phòng ngủ trục 02 siêu hiếm",
