@@ -9,7 +9,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException
 import concurrent.futures
-from .utils import SELENIUM, REQUESTS, PLAYWRIGHT
+from utils import SELENIUM, REQUESTS, PLAYWRIGHT
 from playwright.sync_api import sync_playwright
 
 # truoc khi update
