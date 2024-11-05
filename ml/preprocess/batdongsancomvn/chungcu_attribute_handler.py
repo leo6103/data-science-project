@@ -25,6 +25,27 @@ translation_dict = translation_dict = {
 }
 
 
+def translate_key(entry: Dict) -> Dict:
+    translated_entry = {}
+    
+    for key, value in entry.items():
+        new_key = translation_dict.get(key, key)
+        translated_entry[new_key] = value
+    
+    print(translated_entry)
+    return translated_entry
+
+
+def normalize_item(entry: Dict) -> Dict:
+    entry = translate_key(entry)
+    entry = process_bedrooms_toilets(entry)
+    entry = process_coordinates(entry)
+    entry = process_area_price(entry)
+    entry = process_directions(entry)
+
+    return entry
+
+
 def process_coordinates(entry: Dict) -> Dict:
     latitude = entry.get("latitude", None)
     longitude = entry.get("longitude", None)

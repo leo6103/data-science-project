@@ -3,7 +3,7 @@ from typing import List, Dict, Callable
 
 
 def read_json(file_path: str) -> List[Dict]:
-    with open(file_path, 'r') as file:
+    with open(file_path, 'r', encoding='utf-8') as file:
         data = json.load(file)
     
     return data
@@ -14,7 +14,7 @@ def merge_data_with_paths(path_list: List[str]) -> List[Dict]:
 
     for path in path_list:
         try:
-            with open(path, "r") as file:
+            with open(path, 'r', encoding='utf-8') as file:
                 data = json.load(file)
                 merged_data.extend(data)
         except FileNotFoundError:
@@ -28,7 +28,7 @@ def merge_data_with_paths(path_list: List[str]) -> List[Dict]:
 
 
 def write_json(data: list, output_path: str):
-    with open(output_path, 'w') as output_file:
+    with open(output_path, 'w', encoding='utf-8') as output_file:
         json.dump(data, output_file, indent=4)
 
 
