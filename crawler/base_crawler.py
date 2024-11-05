@@ -66,37 +66,50 @@ class BaseCrawler:
             finally:
                 driver.quit()
         elif self.request_type == REQUESTS:
-            # proxy = random.choice(self.proxies)
-            user_agent = random.choice(self.user_agents)
-            headers = {
-                "Pragma": "no-cache",
-                "Priority": "u=0, i",
-                "Sec-Ch-Ua": '"Chromium";v="129", "Not;A=Brand";v="25", "Google Chrome";v="129"',  # Version numbers changed
-                "Sec-Ch-Ua-Mobile": "?0",
-                "Sec-Ch-Ua-Platform": "Linux",
-                "Sec-Fetch-Dest": "document",
-                "Sec-Fetch-Mode": "navigate",
-                "Sec-Fetch-Site": "none",
-                "Sec-Fetch-User": "?1",
-                "Upgrade-Insecure-Requests": "1",
-                "User-Agent": random.choice(self.user_agents),
-                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-                "Accept-Language": "en-US,en;q=0.9,vi-VN;q=0.8,vi;q=0.7",
-                "Cache-Control": "no-cache",
-            }
-            # proxies = {"http": f"http://{proxy}", "https": f"http://{proxy}"}
-            
-            try:
-                response = requests.get(url, headers=headers)
-                print(response.status_code)
-                print(response.text)
+            while True:
+                # Rotate user-agent for each retry
+                user_agent = self.user_agents[0]
+                self.user_agents.append(self.user_agents[0])
+                self.user_agents.popleft()  # Rotate the user-agent
 
-                if response.status_code == 200:
-                    return response.text
+                headers = {
+                    "Pragma": "no-cache",
+                    "Priority": "u=0, i",
+                    "Sec-Ch-Ua": '"Chromium";v="129", "Not;A=Brand";v="25", "Google Chrome";v="129"',  # Adjusted version numbers
+                    "Sec-Ch-Ua-Mobile": "?0",
+                    "Sec-Ch-Ua-Platform": "Linux",
+                    "Sec-Fetch-Dest": "document",
+                    "Sec-Fetch-Mode": "navigate",
+                    "Sec-Fetch-Site": "none",
+                    "Sec-Fetch-User": "?1",
+                    "Upgrade-Insecure-Requests": "1",
+                    "User-Agent": user_agent,
+                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+                    "Accept-Language": "en-US,en;q=0.9,vi-VN;q=0.8,vi;q=0.7",
+                    "Cache-Control": "no-cache",
+                }
                 
-            except requests.exceptions.RequestException as e:
-                print(e)
-            return None
+                try:
+                    # Send the request
+                    response = requests.get(url, headers=headers, timeout=5)  # Set timeout for 5 seconds
+                    print(response.status_code)
+                    
+                    # Check for a successful response
+                    if response.status_code == 200:
+                        print("Request successful")
+                        return response.text
+                    else:
+                        print(f"Non-200 status code received: {response.status_code}. Retrying with a new User-Agent...")
+
+                except requests.exceptions.Timeout:
+                    print(f"Timeout occurred for URL: {url} with User-Agent: {user_agent}. Retrying with a new User-Agent...")
+                
+                except requests.exceptions.RequestException as e:
+                    print(f"Request error occurred: {e}")
+                    return None
+                
+                # Pause briefly before retrying
+                time.sleep(1)
         elif self.request_type == PLAYWRIGHT:
             while True:
                 # Xoay vòng user-agent

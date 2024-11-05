@@ -148,8 +148,6 @@ if __name__ == '__main__':
 
         # Safari trên macOS
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15",
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_2_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15",
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15",
 
         # Chrome trên macOS
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.49 Safari/537.36",
@@ -181,15 +179,15 @@ if __name__ == '__main__':
     # target_url = 'https://batdongsan.com.vn/ban-dat/p1/p{page}'
     # target_url = 'https://batdongsan.com.vn/ban-nha-rieng/p1/p{page}'
 
-    start_page = 1
-    end_page = 200
+    start_page = 501
+    end_page = 600
 
     save_path = f'data/raw/batdongsancomvn/chungcu/{start_page}-{end_page}.json'
     # save_path = f'data/raw/batdongsancomvn/dat/{start_page}-{end_page}.json'
     # save_path = f'data/raw/batdongsancomvn/nharieng/{start_page}-{end_page}.json'
 
 
-    request_type = PLAYWRIGHT
+    request_type = REQUESTS
     multithreading = True
 
     crawler = BatDongSanComVn(proxies, user_agents, target_url, start_page, end_page, save_path, request_type, multithreading)
