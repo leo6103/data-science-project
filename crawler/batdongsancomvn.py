@@ -8,6 +8,7 @@ import time
 import random
 from crawler.utils import REQUESTS, SELENIUM, PLAYWRIGHT
 from collections import deque
+import signal
 
 
 class BatDongSanComVn(BaseCrawler):
@@ -27,9 +28,12 @@ class BatDongSanComVn(BaseCrawler):
 
     def extract_house_items(self, soup: BeautifulSoup) -> list:
     
-        elements = soup.find_all("div", class_=re.compile(r"js__card.*pr-container.*re__card-full"))
+        elements = soup.find_all(
+            "div", 
+            class_=re.compile(r"js__card.*pr-container.*re__card-full")
+        )
 
-        print(elements)
+        # print(elements)
         valid_elements = [element for element in elements if element.get('prid') and element.get('prid') != '0']
 
         return elements
@@ -55,13 +59,13 @@ class BatDongSanComVn(BaseCrawler):
             item_general_info['title'] = title
         except Exception as e:
             item_general_info['title'] = None
-            print(f"Error extracting title: {e}")
+            # print(f"Error extracting title: {e}")
 
         try:
             item_general_info['url'] = self.extract_item_url(item_html)
         except Exception as e:
             item_general_info['url'] = None
-            print(f"Error extracting URL: {e}")
+            # print(f"Error extracting URL: {e}")
 
         try:
             location_element = item_html.find('div', class_='re__card-location')
@@ -74,7 +78,7 @@ class BatDongSanComVn(BaseCrawler):
         return item_general_info
 
     def extract_detail_info(self, item_url: str) -> dict:
-        print(f'Extracting detail info with url {item_url}')
+        # print(f'Extracting detail info with url {item_url}')
         html = self.send_request(item_url)
 
         if html is None:
@@ -114,6 +118,8 @@ class BatDongSanComVn(BaseCrawler):
 
 import time
 
+
+
 if __name__ == '__main__':
     proxies =[]
     # ["127.0.0.1:30000",
@@ -140,54 +146,38 @@ if __name__ == '__main__':
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.110 Safari/537.36",
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.5672.127 Safari/537.36",
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.49 Safari/537.36",
-        
-        # Firefox trên Windows
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0",
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:114.0) Gecko/20100101 Firefox/114.0",
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:113.0) Gecko/20100101 Firefox/113.0",
-
-        # Safari trên macOS
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15",
-
-        # Chrome trên macOS
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.49 Safari/537.36",
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.111 Safari/537.36",
-
-        # Firefox trên macOS
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:106.0) Gecko/20100101 Firefox/106.0",
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:105.0) Gecko/20100101 Firefox/105.0",
-        
-        # Chrome trên Linux
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.5414.74 Safari/537.36",
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.5359.124 Safari/537.36",
-
-        # Firefox trên Linux
         "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/109.0",
         "Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0",
-        
-        # Edge trên Windows
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.1661.44 Safari/537.36 Edg/111.0.1661.44",
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.1587.57 Safari/537.36 Edg/110.0.1587.57",
-
-        
-        # Cốc Cốc trên Windows
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/95.0.150 Chrome/89.0.4389.150 Safari/537.36"
     ])
 
     start_time = time.time()
-    target_url = 'https://batdongsan.com.vn/ban-can-ho-chung-cu-ha-noi/p{page}'
-    # target_url = 'https://batdongsan.com.vn/ban-dat/p1/p{page}'
-    # target_url = 'https://batdongsan.com.vn/ban-nha-rieng/p1/p{page}'
+    # target_url = 'https://batdongsan.com.vn/ban-can-ho-chung-cu-ha-noi/p{page}'
+    target_url = 'https://batdongsan.com.vn/ban-dat-dat-nen-ha-noi/p{page}'
+    # target_url = 'https://batdongsan.com.vn/ban-nha-rieng-ha-noi/p{page}'
 
-    start_page = 501
-    end_page = 600
-
-    save_path = f'data/raw/batdongsancomvn/chungcu/{start_page}-{end_page}.json'
-    # save_path = f'data/raw/batdongsancomvn/dat/{start_page}-{end_page}.json'
-    # save_path = f'data/raw/batdongsancomvn/nharieng/{start_page}-{end_page}.json'
+    start_page = 101
+    end_page = 150
 
 
-    request_type = REQUESTS
+    # save_path = f'data/raw/batdongsancomvn/chungcu/{start_page}-{end_page}.json'
+    save_path = f'data/raw/batdongsancomvn/dat/new{start_page}-{end_page}.json'
+    # save_path = f'data/raw/batdongsancomvn/nharieng/new{start_page}-{end_page}.json'
+
+
+    request_type = PLAYWRIGHT
     multithreading = True
 
     crawler = BatDongSanComVn(proxies, user_agents, target_url, start_page, end_page, save_path, request_type, multithreading)
