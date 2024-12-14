@@ -12,6 +12,7 @@ import concurrent.futures
 from crawler.utils import SELENIUM, REQUESTS, PLAYWRIGHT
 from playwright.sync_api import sync_playwright
 
+
 # truoc khi update
 class BaseCrawler:
     def __init__(
@@ -27,6 +28,7 @@ class BaseCrawler:
         ):
         
         self.proxies =proxies
+
 #         self.proxies=[
 #     "127.0.0.1:30000",
 #     "127.0.0.1:30001",
@@ -91,13 +93,14 @@ class BaseCrawler:
 #     # Cốc Cốc trên Windows
 #     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/95.0.150 Chrome/89.0.4389.150 Safari/537.36",
 # ]
+
         self.target_url = target_url
         self.start_page = start_page
         self.end_page = end_page
         self.save_path = save_path
         self.request_type = request_type
         self.multi_threading = multi_threading
-  
+
 
     def send_request(self, url):
        
@@ -180,6 +183,7 @@ class BaseCrawler:
                 print(f"Error occurred while fetching page with Playwright: {e}")
                 return None
 
+
     def extract_house_items(self, html: BeautifulSoup) -> list:
         pass
 
@@ -206,6 +210,7 @@ class BaseCrawler:
 
         data = []
 
+
         if self.multi_threading:
             # Sử dụng đa luồng nếu self.multi_threading = True
             with concurrent.futures.ThreadPoolExecutor() as executor:
@@ -214,11 +219,13 @@ class BaseCrawler:
                 for future in concurrent.futures.as_completed(futures):
                     item_data = future.result()
                     data.append(item_data)
+
         else:
             # Chạy tuần tự nếu self.multi_threading = False
             for item in house_items:
                 item_data = self.process_item(item)
                 data.append(item_data)
+
 
         return data
 

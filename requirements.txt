@@ -2,3 +2,12 @@ beautifulsoup4
 requests
 selenium
 pytest-playwright
+xgboost
+pandas
+scikit-learn
+numpy
+torch
+lightgbm
+imblearn
+optuna
+jupyterlab

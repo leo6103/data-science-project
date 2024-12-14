@@ -8,6 +8,7 @@ import time
 import random
 from crawler.utils import REQUESTS, SELENIUM, PLAYWRIGHT
 
+
 class BatDongSanComVn(BaseCrawler):
     def __init__(
             self, 
@@ -187,6 +188,7 @@ if __name__ == '__main__':
 
 
     request_type = PLAYWRIGHT
+
     multithreading = True
 
     crawler = BatDongSanComVn(proxies, user_agents, target_url, start_page, end_page, save_path, request_type, multithreading)
