@@ -1,0 +1,45 @@
+{
+    "result": 301,
+    "message":"You need to login first"
+}
+
+{
+    "result": 501,
+    "message":"You need to login first"
+}
+
+{
+    "result": 300,
+    "message":"2 files found",
+    "data" : [
+        {
+            "file": "home/leo/test.txt",
+            "owner": "leo",
+            "address": "123.456.789:3000"
+        },
+        {
+            "file": "home/admin/test2.txt",
+            "owner": "admin",
+            "address": "123.456.789:8080"
+        }
+    ]
+}
+
+{
+    "action": <string>,
+    "data": <object | array>
+}
+
+{
+    "result": <int>,
+    "message": <string>,
+    "data": <object | array>
+}
+
+{
+    "action": "browse",
+    "data": {
+        "file_name": "test.txt",
+        "user_name": null,
+    }
+}
