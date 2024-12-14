@@ -13,6 +13,7 @@ from crawler.utils import SELENIUM, REQUESTS, PLAYWRIGHT
 from playwright.sync_api import sync_playwright, TimeoutError
 from collections import deque
 import sys, signal
+import unicodedata
 
 
 # truoc khi update
@@ -162,7 +163,7 @@ class BaseCrawler:
                 
                 try:
                     # Send the request
-                    response = requests.get(url, headers=headers, timeout=5)  # Set timeout for 5 seconds
+                    response = requests.get(url, headers=headers, timeout=5)
                     print(response.status_code)
                     
                     # Check for a successful response
@@ -179,8 +180,6 @@ class BaseCrawler:
                     print(f"Request error occurred: {e}")
                     return None
                 
-                # Pause briefly before retrying
-                time.sleep(1)
         elif self.request_type == PLAYWRIGHT:
             while True:
                 # Xoay vòng user-agent
@@ -251,12 +250,31 @@ class BaseCrawler:
                         data.append(item_data)
 
             else:
-                # Chạy tuần tự nếu self.multi_threading = False
-                for item in house_items:
-                    item_data = self.process_item(item)
-                    if item_data['location'] is not None and 'Hà Nội' in item_data['location']:
-                        data.append(item_data)
 
+                self.headless = True
+
+            # Nếu nhận được dữ liệu hợp lệ, thoát khỏi vòng lặp
+            break
+
+        # Xử lý dữ liệu sau khi lấy được house_items
+        if self.multi_threading:
+            # Sử dụng đa luồng nếu self.multi_threading = True
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                futures = [executor.submit(self.process_item, item) for item in house_items]
+                
+                for future in concurrent.futures.as_completed(futures):
+                    item_data = future.result()
+                    print(f'Item data {item_data}')
+                    if item_data['location'] is not None and 'Hà Nội' in unicodedata.normalize('NFKC', item_data['location']):
+                        data.append(item_data)
+                    else:
+                        print('$$$$$$$$$$$$$$Data not saved')
+        else:
+            # Chạy tuần tự nếu self.multi_threading = False
+            for item in house_items:
+                item_data = self.process_item(item)
+                if item_data['location'] is not None and 'Hà Nội' in unicodedata.normalize('NFKC', item_data['location']):
+                    data.append(item_data)
 
         return data
 
@@ -320,6 +338,7 @@ class BaseCrawler:
             try:
                 print(f"Processing page {i}...")
                 page_data = self.crawl_page(i)  # Thu thập dữ liệu từ trang
+                print(f'Page data {page_data}')
                 self.collected_data.extend(page_data)  # Thêm dữ liệu vào danh sách tổng
             except Exception as e:
                 print(f"Error processing page {i}: {e}")

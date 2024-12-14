@@ -1,4 +1,4 @@
-from base_crawler import BaseCrawler
+from crawler.base_crawler import BaseCrawler
 import requests
 from bs4 import BeautifulSoup
 import logging
@@ -6,20 +6,29 @@ import re
 import json
 import time
 import random
+from collections import deque
+from crawler.utils import REQUESTS, SELENIUM, PLAYWRIGHT
+
 
 class DoThiNet(BaseCrawler):
-    def __init__(self, proxies, user_agents):
-        target_url = 'https://dothi.net/ban-can-ho-chung-cu-ha-noi/p{page}.htm'
-        start_page = 1
-        end_page = 5
-        save_path = 'data/raw/dothinet.json'
-        super().__init__(proxies, user_agents, target_url, start_page, end_page, save_path)
-        
-        self.base_url = 'https://dothi.net/'
+    def __init__(
+            self, 
+            proxies, 
+            user_agents,
+            target_url,
+            start_page,
+            end_page,
+            save_path,
+            request_type,
+            multi_threading
+        ):
+        super().__init__(proxies, user_agents, target_url, start_page, end_page, save_path, request_type, multi_threading)
+        self.base_url = 'https://dothi.net'
 
     def extract_house_items(self, soup: BeautifulSoup) -> list:
+        print('Extracting items')
         elements = soup.find_all(class_='vip-5-highlight')
-        
+        print(elements)
         return elements
     
     def extract_item_url(self, item_html: BeautifulSoup) -> str:
@@ -75,6 +84,7 @@ class DoThiNet(BaseCrawler):
             item_general_info['location'] = None
             print(f"Error extracting location: {e}")
 
+        print(f'General info {item_general_info}')
         return item_general_info
 
 
@@ -125,12 +135,44 @@ class DoThiNet(BaseCrawler):
         except Exception as e:
             print(f"Error when extracting latitude and longitude: {e}")
 
-
+        print(f'Detail info {detail_info}')
         return detail_info
 
 if __name__ == '__main__':
     proxies = []
-    user_agents = [
-    ]
-    crawler = DoThiNet(proxies, user_agents)
+    user_agents = deque([
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.110 Safari/537.36",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.5672.127 Safari/537.36",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.49 Safari/537.36",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:114.0) Gecko/20100101 Firefox/114.0",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:113.0) Gecko/20100101 Firefox/113.0",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.49 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.111 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:106.0) Gecko/20100101 Firefox/106.0",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:105.0) Gecko/20100101 Firefox/105.0",
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.5414.74 Safari/537.36",
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.5359.124 Safari/537.36",
+        "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/109.0",
+        "Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.1661.44 Safari/537.36 Edg/111.0.1661.44",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.1587.57 Safari/537.36 Edg/110.0.1587.57",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/95.0.150 Chrome/89.0.4389.150 Safari/537.36"
+    ])
+    
+    start_time = time.time()
+    target_url = 'https://dothi.net//ban-nha-dat-ha-noi/p{page}.htm'
+    start_page = 1
+    end_page = 242
+    save_path = f'data/raw/dothinet/nha/{start_page}-{end_page}.json'
+    request_type = REQUESTS
+    multithreading = True
+
+    crawler = DoThiNet(proxies, user_agents, target_url, start_page, end_page, save_path, request_type, multithreading)
     crawler.run()
+
+    end_time = time.time()
+
+    total_time = end_time - start_time
+    print(f"Running time: {total_time:.2f} seconds")
