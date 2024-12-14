@@ -1,1 +1,2 @@
-from .attribute_handler import chungcu_attribute_handler
+
+from . import chungcu_attribute_handler
