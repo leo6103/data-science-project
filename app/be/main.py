@@ -1,7 +1,15 @@
+
+import numpy as np
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 import json
 import asyncio
+from contextlib import asynccontextmanager
+import joblib
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+from ml.models.RandomForest import RandomForest
 
 import logging
 logging.basicConfig(
@@ -11,7 +19,24 @@ logging.basicConfig(
 )
 _logger = logging.getLogger(__name__)
 
-app = FastAPI()
+# Lifespan quản lý khởi động và tắt server
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup: Load model
+    _logger.info("Loading model...")
+    model_apartment = RandomForest("rf_model","apartment")
+    model_apartment.load_model()
+    # model_land = RandomForest("rf_model","land")
+    # model_land.load_model()
+    # model_house = RandomForest("rf_model","house")
+    # model_house.load_model()
+    app.state.model_apartment = model_apartment
+    # app.state.model_land = model_land
+    # app.state.model_house = model_house
+    _logger.info("Model loaded successfully.")
+    yield  
+    _logger.info("Shutting down server...")
+app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -28,13 +53,29 @@ async def read_json_file(file_path: str):
     with open(file_path, "r") as file:
         data = await loop.run_in_executor(None, file.read)
         return json.loads(data)
-    
+
+
+
 @app.post("/predict/")
 async def predict(request: Request):
+    epsilon = 1e-10
     data = await request.json()
     _logger.info(f"Request data: {data}")
+    if data.get('property_type') == 'land':
+        model = app.state.model_land
+    elif data.get('property_type') == 'house':
+        model = app.state.model_house
+    elif data.get('property_type') == 'apartment':
+        model = app.state.model_apartment
+    else:
+        return {"error": "Invalid property_type. Must be 'land', 'house', or 'apartment'."}
+    log_price = model.predict(data)
+    price = np.exp(log_price - epsilon)
+    if isinstance(price, np.ndarray):
+        price = price.tolist()
+    _logger.info(f"Predicted price: {price}")
     response = {
-        "price": 4.6 * 10e9
+        "price": price
     }
     return response
 

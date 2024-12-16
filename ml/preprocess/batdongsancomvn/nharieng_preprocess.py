@@ -15,6 +15,12 @@ raw_directory = 'data/raw/batdongsancomvn/nharieng'
 list_paths =  merge_json_files(raw_directory)
 raw_data = merge_data_with_paths(list_paths)
 
+frontage_values = set()
+for item in raw_data:
+    if item.get("Số phòng ngủ") is not None:
+        frontage_values.add(item.get("Số phòng ngủ"))
+print("Các giá trị khác nhau của thuộc tính Mặt tiền:")
+print(frontage_values)
 # Loại bỏ các data bị trùng lặp dữ liệu 
 remove_duplicates_by_url(raw_data)
 
@@ -27,8 +33,26 @@ raw_data = [entry for entry in raw_data if entry is not None]
 interim_path = "data/interim/batdongsancomvn/nharieng/interim_merged_nharieng.json"
 write_json(raw_data, interim_path)
 
+# Chuẩn hoá dữ liệu để train và lưu
+for i in range(len(raw_data)):
+    raw_data[i] = normalize_process_item(raw_data[i])
+raw_data = [entry for entry in raw_data if entry is not None]
+preprocess_path = "data/processed/batdongsancomvn/nharieng/preprocess_merged_nharieng.csv"
+df = pd.DataFrame(raw_data)
+df.to_csv(preprocess_path, index=False)
 
-frontage_values = set()
+# In ra các key và tần suất xuất hiện
+key_frequency = {}
+for item in raw_data:
+    if item is not None :
+        for key in item.keys():
+            key_frequency[key] = key_frequency.get(key, 0) + 1
+print("Tần suất xuất hiện của các key trong data:")
+for key, frequency in key_frequency.items():
+    print(f"{key}: {frequency}/{len(raw_data)}")
+
+
+frontage_values = set() 
 for item in raw_data:
     if item is not None :
         if item.get("furniture") is not None:
@@ -40,12 +64,4 @@ print(frontage_values)
 #     if item.get("area") == 3:
 #         print(item)
 
-# In ra các key và tần suất xuất hiện
-key_frequency = {}
-for item in raw_data:
-    if item is not None :
-        for key in item.keys():
-            key_frequency[key] = key_frequency.get(key, 0) + 1
-print("Tần suất xuất hiện của các key trong data:")
-for key, frequency in key_frequency.items():
-    print(f"{key}: {frequency} lần")
+

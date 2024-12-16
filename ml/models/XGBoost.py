@@ -151,7 +151,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_squared_error
 from ml.models.BaseModel import BaseModel
-from ml.utils import prepare_data
+from ml.utils import prepare_data_chungcu,prepare_data_dat,prepare_data_nharieng
 from xgboost import XGBRegressor
 from skopt import BayesSearchCV
 from skopt.space import Integer, Real, Categorical
@@ -161,7 +161,7 @@ logging.basicConfig(level=logging.INFO)
 
 
 class XGBoostModel(BaseModel):
-    def __init__(self, model_name):
+    def __init__(self, model_name, type):
         """
         Khởi tạo mô hình XGBoost với Pipeline bao gồm bước chuẩn hóa.
         """
@@ -177,14 +177,18 @@ class XGBoostModel(BaseModel):
                 tree_method="auto"
             ))
         ])
+        self.type = type
 
     def process_data(self, df):
         """
-        Tiền xử lý dữ liệu:
-        - Gọi hàm prepare_data(df) để lấy X, y.
-        - Có thể thêm các bước feature engineering khác ở đây.
+        Prepares the dataset for LightGBM training.
         """
-        X, y = prepare_data(df)
+        if self.type =='apartment':
+            X, y = prepare_data_chungcu(df)
+        elif self.type == 'land':
+            X, y = prepare_data_dat(df)
+        elif self.type == 'house':
+            X, y = prepare_data_nharieng(df)
         X_train, X_test, y_train, y_test = train_test_split(
             X, y, test_size=0.2, random_state=42
         )
@@ -282,7 +286,7 @@ class XGBoostModel(BaseModel):
         Lưu mô hình đã huấn luyện.
         """
         import joblib
-        path = f"ml/saved_models/{self.model_name}.pkl"
+        path = f"ml/saved_models/{self.type}/{self.model_name}.txt"
         os.makedirs(os.path.dirname(path), exist_ok=True)
         joblib.dump(self.pipeline, path)
         logging.info(f"Model saved to {path}")
@@ -292,7 +296,7 @@ class XGBoostModel(BaseModel):
         Tải mô hình đã lưu.
         """
         import joblib
-        path = f"ml/saved_models/{self.model_name}.pkl"
+        path = f"ml/saved_models/{self.type}/{self.model_name}.txt"
         if not os.path.exists(path):
             raise FileNotFoundError(f"Model file not found at: {path}")
 

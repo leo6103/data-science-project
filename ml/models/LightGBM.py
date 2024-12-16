@@ -7,7 +7,7 @@ from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 import lightgbm as lgb
 import optuna
 from ml.models.BaseModel import BaseModel
-from ml.utils import prepare_data
+from ml.utils import prepare_data_chungcu,prepare_data_dat,prepare_data_nharieng
 
 logging.basicConfig(level=logging.INFO)
 
@@ -16,7 +16,7 @@ class LightGBM(BaseModel):
     NUM_ROUND = 5000
     EPSILON = 1e-10
 
-    def __init__(self, model_name):
+    def __init__(self, model_name, type):
         """
         Initialize the LightGBM model with predefined parameters.
         """
@@ -36,6 +36,7 @@ class LightGBM(BaseModel):
             'verbose': -1
         }
         self.model = None
+        self.type =  type
 
     def custom_eval_callback(self, env, X_test, y_test, epsilon):
         """
@@ -54,6 +55,10 @@ class LightGBM(BaseModel):
         Calculate evaluation metrics.
         """
         epsilon = 1e-10
+        
+
+        y_pred = np.exp(y_pred - epsilon)
+        y_actual = np.exp(y_actual - epsilon)
         mse = mean_squared_error(y_actual, y_pred)
         rmse = np.sqrt(mse)
         mape = np.mean(np.abs((y_actual - y_pred) / (y_actual + epsilon))) * 100
@@ -63,7 +68,12 @@ class LightGBM(BaseModel):
         """
         Prepares the dataset for LightGBM training.
         """
-        X, y = prepare_data(df)
+        if self.type =='apartment':
+            X, y = prepare_data_chungcu(df)
+        elif self.type == 'land':
+            X, y = prepare_data_dat(df)
+        elif self.type == 'house':
+            X, y = prepare_data_nharieng(df)
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
         train_data = lgb.Dataset(X_train, label=y_train)
         valid_data = lgb.Dataset(X_test, label=y_test, reference=train_data)
@@ -76,7 +86,8 @@ class LightGBM(BaseModel):
         """
         logging.info("Performing LightGBM + Optuna Hyperparameter Tuning...")
 
-        def objective(trial):
+        def objective(trial,y_test):
+            epsilon = 1e-10
             param = {
                 'objective': 'regression',
                 'metric': 'mse',
@@ -108,7 +119,9 @@ class LightGBM(BaseModel):
                 ]
             )
 
-            y_pred = model.predict(X_test, num_iteration=model.best_iteration)
+            y_pred_log = model.predict(X_test, num_iteration=model.best_iteration)
+            y_pred = np.exp(y_pred_log - epsilon)
+            y_test = np.exp(y_test) - epsilon
             rmse = np.sqrt(mean_squared_error(y_test, y_pred))
             return rmse
 
@@ -131,16 +144,16 @@ class LightGBM(BaseModel):
 
 
         # Nếu cần tuning, gọi lightgbm_optuna_tuning trước
-        if tuning:
-            # Lấy dữ liệu từ train_data và valid_data
-            # Vì train_data, valid_data là Dataset của LightGBM, ta cần trích xuất ra cho tuning
-            X_train = train_data.data
-            y_train = train_data.label
-            X_val = valid_data.data
-            y_val = valid_data.label
+        # if tuning:
+        #     # Lấy dữ liệu từ train_data và valid_data
+        #     # Vì train_data, valid_data là Dataset của LightGBM, ta cần trích xuất ra cho tuning
+        #     X_train = train_data.data
+        #     y_train = train_data.label
+        #     X_val = valid_data.data
+        #     y_val = valid_data.label
 
             # Tối ưu tham số bằng Optuna
-            self.lightgbm_optuna_tuning(X_train, X_val, y_train, y_val)
+            # self.lightgbm_optuna_tuning(X_train, X_val, y_train, y_val)
 
         # Sau khi có params tốt nhất (nếu tuning=True), tiến hành train mô hình
         logging.info("Training LightGBM model with current parameters...")
@@ -155,3 +168,36 @@ class LightGBM(BaseModel):
             ],
         )
         logging.info("Training complete!")
+    
+
+
+    def evaluate(self, y_actual, y_pred):
+        """
+        Calculate evaluation metrics.
+        """
+        epsilon = 1e-10
+        mse = mean_squared_error(y_actual, y_pred)
+        rmse = np.sqrt(mse)
+        mape = np.mean(np.abs((y_actual - y_pred) / (y_actual + epsilon))) * 100
+        return mse, rmse, mape
+    def save_model(self):
+        """
+        Save the trained LightGBM model.
+        """
+        import joblib
+        path = f"ml/saved_models/{self.type}/{self.model_name}.txt"
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        joblib.dump(self.model, path)
+        logging.info(f"Model saved to {path}")
+
+    def load_model(self):
+        """
+        Load a pre-trained LightGBM model.
+        """
+        import joblib
+        path = f"ml/saved_models/{self.type}/{self.model_name}.txt"
+        if not os.path.exists(path):
+            raise FileNotFoundError(f"Model file not found at: {path}")
+
+        self.model = joblib.load(path)
+        logging.info(f"Model loaded from {path}")

@@ -120,7 +120,7 @@ def process_legal(entry: Dict) -> Dict:
     if legal is not None:
         legal = legal.lower()
         if any(keyword in legal for keyword in ["sổ đỏ", "sổ hồng", "sổ chính chủ", "sổ riêng"]):
-            entry["legal"] = 2
+            entry["legal"] = 1
             return entry
         elif any(keyword in legal for keyword in ["pháp lý đầy đủ", "giấy tờ đầy đủ", "pháp lý rõ ràng"]):
             entry["legal"] = 1
@@ -179,5 +179,17 @@ def process_furniture(entry: Dict) -> Dict:
             entry["furniture"] = None
             return entry
 
+def remove_price_deal(entry: Dict)-> Dict:
+    if  entry.get("price") == "deal":
+        return None
+    return entry
+key_to_check = ["area","price","longitude","latitude"]
 
+def remove_objects_with_none(entry: Dict)-> Dict:
+    if entry is None:
+            return None
+
+    if any(entry.get(key) is None for key in key_to_check):
+            return None
+    return entry
 

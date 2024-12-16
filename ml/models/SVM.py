@@ -151,7 +151,7 @@ from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.metrics import mean_squared_error
 from sklearn.svm import SVR
 from ml.models.BaseModel import BaseModel
-from ml.utils import prepare_data
+from ml.utils import prepare_data_chungcu,prepare_data_dat,prepare_data_nharieng
 from skopt import BayesSearchCV
 from skopt.space import Integer, Real, Categorical
 
@@ -195,7 +195,7 @@ class OptionalPCA:
 
 
 class SVM(BaseModel):
-    def __init__(self, model_name):
+    def __init__(self, model_name, type):
         """
         Khởi tạo mô hình SVR với Pipeline linh hoạt:
         - PolynomialFeatures
@@ -210,14 +210,19 @@ class SVM(BaseModel):
             ('pca', OptionalPCA(n_components=0)),
             ('model', SVR(kernel='rbf', C=1.0, epsilon=0.1, gamma='scale'))
         ])
+        self.model_name = model_name
+        self.type = type
 
     def process_data(self, df):
         """
-        Tiền xử lý dữ liệu:
-        Gọi prepare_data(df) lấy X, y.
-        Người dùng có thể bổ sung bước feature engineering khác ở đây.
+        Prepares the dataset for LightGBM training.
         """
-        X, y = prepare_data(df)
+        if self.type =='apartment':
+            X, y = prepare_data_chungcu(df)
+        elif self.type == 'land':
+            X, y = prepare_data_dat(df)
+        elif self.type == 'house':
+            X, y = prepare_data_nharieng(df)
         X_train, X_test, y_train, y_test = train_test_split(
             X, y, test_size=0.2, random_state=42
         )
@@ -246,13 +251,6 @@ class SVM(BaseModel):
         """
         logging.info("Performing Bayesian Optimization for hyperparameter tuning...")
 
-        # Không gian tham số:
-        # poly__degree: bậc đa thức (1 nghĩa là không mở rộng)
-        # pca__n_components: 0 nghĩa là không PCA, >0 giảm chiều.
-        # model__kernel: chọn kernel (linear, rbf, poly)
-        # model__C, model__epsilon, model__gamma: tham số của SVR
-        # model__degree: bậc cho kernel 'poly' (nếu kernel=poly)
-        
         search_spaces = {
             'poly__degree': Integer(1, 3),
             'pca__n_components': Integer(0, 10),
@@ -268,7 +266,7 @@ class SVM(BaseModel):
             estimator=self.pipeline,
             search_spaces=search_spaces,
             n_iter=50,            # Số vòng lặp tuning, tăng lên nếu muốn tìm kiếm kỹ hơn
-            cv=10,
+            cv=20,
             scoring='neg_mean_squared_error',
             random_state=42,
             verbose=3,
@@ -286,7 +284,7 @@ class SVM(BaseModel):
 
         # Đánh giá mô hình ban đầu bằng 10-Fold CV
         logging.info("Performing 10-Fold Cross-Validation before tuning...")
-        cv_scores = cross_val_score(self.pipeline, X_train, y_train, cv=10, scoring='neg_mean_squared_error', n_jobs=-1)
+        cv_scores = cross_val_score(self.pipeline, X_train, y_train, cv=20, scoring='neg_mean_squared_error', n_jobs=-1)
         cv_rmse = np.sqrt(-cv_scores.mean())
         logging.info(f"Initial 10-Fold Cross-Validation RMSE: {cv_rmse:.4f}")
 
@@ -323,7 +321,7 @@ class SVM(BaseModel):
         Lưu mô hình đã huấn luyện.
         """
         import joblib
-        path = f"ml/saved_models/{self.model_name}.pkl"
+        path = f"ml/saved_models/{self.type}/{self.model_name}.txt"
         os.makedirs(os.path.dirname(path), exist_ok=True)
         joblib.dump(self.pipeline, path)
         logging.info(f"Model saved to {path}")
@@ -333,7 +331,7 @@ class SVM(BaseModel):
         Tải mô hình đã lưu.
         """
         import joblib
-        path = f"ml/saved_models/{self.model_name}.pkl"
+        path = f"ml/saved_models/{self.type}/{self.model_name}.txt"
         if not os.path.exists(path):
             raise FileNotFoundError(f"Model file not found at: {path}")
 

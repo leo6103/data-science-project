@@ -11,9 +11,23 @@ from sklearn.cluster import KMeans
 def read_json (file_path: str) -> List[Dict]:
     with open(file_path, 'r', encoding='utf-8') as file:
         data = json.load(file)
-    
     return data
 
+def read_csv (file_path: str) -> List[Dict]:
+    try:
+        print("Start reading file...")
+        df = pd.read_csv(file_path)
+        df = df.astype(np.float32) 
+    except FileNotFoundError:
+        print(f"Error: File '{file_path}' không tồn tại.")
+    except pd.errors.EmptyDataError:
+        print(f"Error: File '{file_path}' không chứa dữ liệu.")
+    except pd.errors.ParserError:
+        print(f"Error: File '{file_path}' không đúng định dạng CSV.")
+    except Exception as e:
+        print(f"Đã xảy ra lỗi: {e}")
+    return df
+    
 def write_json(data: list, output_path: str):
     with open(output_path, 'w', encoding='utf-8') as output_file:
         json.dump(data, output_file, indent=4)
@@ -35,33 +49,69 @@ def read_csv (file_path: str) -> List[Dict]:
     
     
 
-def prepare_data1(df: pd.DataFrame) -> pd.DataFrame:
-    # encoder = OneHotEncoder(sparse_output=False)
-    # encoded_location_group = encoder.fit_transform(df[['location_group']])
+def prepare_data_dat(df: pd.DataFrame) -> pd.DataFrame:
+
     df['z_score'] = np.abs(stats.zscore(df['price']))
     df = df[df['z_score'] <= 3]
     df = df.drop(columns=['z_score'])
     print("Số lượng mẫu sau khi lọc ngoại lai:", len(df))
-    # df = df.drop_duplicates(subset=['price_square', 'longitude', 'latitude'])
-    # print("Số lượng mẫu sau khi loại bỏ các dòng trùng lặp:", len(df))
 
     # Biến đổi logarit cho cột giá và diẹn tích
     epsilon = 1e-10
     df['log_area'] = np.log(df['area'] + epsilon)
     df['log_price'] = np.log(df['price'] + epsilon)
-    # df = pd.get_dummies(df, columns=['legal_status', 'furniture'], drop_first=True)
-    kmeans = KMeans(n_clusters=5, random_state=42)
-    # df['location_cluster'] = kmeans.fit_predict(df[['latitude', 'longitude']])
-    df['area_per_room'] = df['log_area'] / df['bedrooms']
+    variables = ['frontage', 'access_road_width', 'area']
+    for var in variables:
+        Q1 = df[var].quantile(0.25)
+        Q3 = df[var].quantile(0.75)
+        IQR = Q3 - Q1
+        lower_bound = Q1 - 1.5 * IQR
+        upper_bound = Q3 + 1.5 * IQR
+        
+        # Lọc dữ liệu chỉ giữ các giá trị trong ngữ nghừa
+        df = df[(df[var] >= lower_bound) & (df[var] <= upper_bound)]
+    print("Số lượng mẫu sau khi lọc ngoại lai:", len(df))
+    
+    X = df.drop(columns=['price','area','log_price']).values
+    y = df['log_price'].values
+    
+    return X,y
+
+
+def prepare_data_chungcu(df: pd.DataFrame) -> tuple:
+    # Chuyển đổi các giá trị không phải số trong cột 'price' thành NaN
+    df['price'] = pd.to_numeric(df['price'], errors='coerce')
+    
+    # Loại bỏ các giá trị NaN trong cột 'price'
+    df = df.dropna(subset=['price'])
+    
+    # Tính z-score cho cột 'price'
+    df['z_score'] = np.abs(stats.zscore(df['price']))
+    
+    # Lọc các giá trị ngoại lai dựa trên z-score
+    df = df[df['z_score'] <= 3]
+    df = df.drop(columns=['z_score'])
+    print("Số lượng mẫu sau khi lọc ngoại lai:", len(df))
+
+    # Biến đổi logarit cho cột giá và diện tích
+    epsilon = 1e-10
+    df['log_area'] = np.log(df['area'] + epsilon)
+    df['log_price'] = np.log(df['price'] + epsilon)
+    
+    # In ra các giá trị của cột 'log_area'
     print("Column names:")
-    for column in df.columns:
+    test = df.drop(columns=['price', 'log_price', 'area'])
+    for column in test.columns:
         print(f"- {column}")
-    X = df.drop(columns=['price','log_price','area','price_square','legal_status','location_group','furniture']).values
+    
+    # Tạo X và y
+    X = df.drop(columns=['price', 'log_price', 'area']).values
     y = df['log_price'].values
 
-    return X,y
+    return X, y
 
-def prepare_data(df: pd.DataFrame) -> pd.DataFrame:
+
+def prepare_data_nharieng(df: pd.DataFrame) -> pd.DataFrame:
     df['z_score'] = np.abs(stats.zscore(df['price']))
     df = df[df['z_score'] <= 3]
     df = df.drop(columns=['z_score'])
@@ -72,53 +122,118 @@ def prepare_data(df: pd.DataFrame) -> pd.DataFrame:
     df['log_area'] = np.log(df['area'] + epsilon)
     df['log_price'] = np.log(df['price'] + epsilon)
 
-    for column in df.columns:
+    print("Column names:")
+    test = df.drop(columns=['price','log_price','area','price_square','location_group','furniture'])
+    for column in test.columns:
         print(f"- {column}")
-    X = df.drop(columns=['price','log_price','area']).values
+    X = df.drop(columns=['price','log_price','area','price_square','location_group']).values
     y = df['log_price'].values
 
     return X,y
 
-def prepare_data_predict(df: pd.DataFrame, reference_columns: list = None) -> pd.DataFrame:
+def prepare_data_predict(X):
+    """
+    Chuẩn bị dữ liệu từ JSON để dự đoán.
+    :param X: JSON đầu vào
+    :return: DataFrame đã chuẩn bị cho mô hình
+    """
+
+    # Kiểm tra và chuyển đổi JSON thành DataFrame
+    if isinstance(X, dict):
+        X = pd.DataFrame([X])  # Chuyển dict thành DataFrame (1 hàng)
+    elif isinstance(X, list):
+        X = pd.DataFrame(X)
+
+    # Kiểm tra property_type
+    if 'property_type' not in X.columns:
+        raise ValueError("Dữ liệu đầu vào thiếu 'property_type'.")
+
+    property_type = X.loc[0, 'property_type']  # Lấy giá trị property_type từ dòng đầu tiên
+
+    # Xử lý từng loại property_type
+    if property_type == 'land':
+        if 'price' not in X.columns:
+            raise ValueError("Dữ liệu 'land' cần có cột 'price'.")
+        epsilon = 1e-10
+        X['log_price'] = np.log(X['price'] + epsilon)
+
+    elif property_type == 'house':
+        if 'price' not in X.columns:
+            raise ValueError("Dữ liệu 'house' cần có cột 'price'.")
+        X['log_price'] = np.log(X['price'] + epsilon)
+
+    elif property_type == 'apartment':
+        epsilon = 1e-10
+        print("Area values and types:", X['area'].head(), X['area'].dtype)
+        # Tính log_area
+        X['log_area'] = np.log(X['area'].values + epsilon)
+        print("log_area:", X['log_area'])
+        print("area:", X['area'])
+        X= X.drop(columns=['area'])
+
+        # Loại bỏ các cột không cần thiết
+        if 'property_type' in X.columns:
+            X = X.drop(columns=['property_type'])
+
+        # Xử lý hướng nhà và hướng ban công
+        if 'house_direction' in X.columns and 'balcony_direction' in X.columns:
+            house_direction = X['house_direction'].values
+            balcony_direction = X['balcony_direction'].values
+            X = X.drop(columns=['house_direction', 'balcony_direction'])
+            print("house_direction:", house_direction)
+            print("balcony_direction:", balcony_direction)
+
+            # Giả sử convert_direction() trả về 2 giá trị x và y
+            X['house_direction_x'], X['house_direction_y'] = convert_direction(house_direction)
+            X['balcony_direction_x'], X['balcony_direction_y'] = convert_direction(balcony_direction)
+
+        # Chuyển đổi lat và lng thành latitude và longitude
+        if 'lat' in X.columns and 'lng' in X.columns:
+            X['latitude'] = X['lat']
+            X['longitude'] = X['lng']
+            X = X.drop(columns=['lat', 'lng'])
+
+        # Debug thông tin các cột
+        print("Column names after processing:")
+        for column in X.columns:
+            print(f"- {column}")
+        print("X after processing:", X)
+
+    else:
+        raise ValueError("Invalid property_type. Must be 'land', 'house', or 'apartment'.")
+
+    return X
+
+def convert_direction(direction):
+    directions = ['e', 'w', 's', 'n', 'se', 'sw', 'ne', 'nw']
+    N = len(directions) - 1
+    def circular_encoding(index, N):
+        angle = 2 * np.pi * index / N
+        x = np.cos(angle)
+        y = np.sin(angle)
+        return x, y
+    
+    if direction == 'None':
+        x, y = 0, 0
+    else:
+        index = directions.index(direction)
+        x, y = circular_encoding(index - 1, N)
+    return x, y
+
+def prepare_data_test_predict(df: pd.DataFrame) -> pd.DataFrame:
+    df['price'] = pd.to_numeric(df['price'], errors='coerce')
+    
+    # Loại bỏ các giá trị NaN trong cột 'price'
+    df = df.dropna(subset=['price'])
     epsilon = 1e-10
-    # df['z_score'] = np.abs(stats.zscore(df['price']))
-    # df = df[df['z_score'] <= 3]
-    # df = df.drop(columns=['z_score'])
-    # print("Số lượng mẫu sau khi lọc ngoại lai:", len(df))
-    # Tạo log_area và log_price
     df['log_area'] = np.log(df['area'] + epsilon)
     df['log_price'] = np.log(df['price'] + epsilon)
-    
-    # One-hot encoding cho legal_status và furniture
-    # df = pd.get_dummies(df, columns=['legal_status', 'furniture'], drop_first=True)
-    
-    # KMeans clustering
-    # if len(df) >= 5:
-    #     n_clusters = 5
-    #     kmeans = KMeans(n_clusters, random_state=42)
-    #     df['location_cluster'] = kmeans.fit_predict(df[['latitude', 'longitude']])
-    # else:
-    #     n_clusters = 1
-    #     kmeans = KMeans(n_clusters, random_state=42)
-    #     df['location_cluster'] = kmeans.fit_predict(df[['latitude', 'longitude']])
-    
-    # Feature engineering
-    df['area_per_room'] = df['log_area'] / df['bedrooms']
-    
-    # Đảm bảo số cột khớp với quá trình huấn luyện
-    if reference_columns is not None:
-        # Thêm cột bị thiếu
-        for col in reference_columns:
-            if col not in df.columns:
-                df[col] = 0
-        # Loại bỏ cột thừa
-        df = df[reference_columns]
+    # in ra các giá trị của cột log_area
 
-    print("Column names in predict data:")
-    for column in df.columns:
+    print("Column names:")
+    test = df.drop(columns=['price','log_price','area'])
+    for column in test.columns:
         print(f"- {column}")
-    
-    # Chuẩn bị X và y
-    X = df.drop(columns=['price', 'log_price', 'area','legal_status','furniture']).values
-    y = df['log_price'].values if 'log_price' in df.columns else None
+    X = df.drop(columns=['price','log_price'])
+    y = df['log_price'].values
     return X, y

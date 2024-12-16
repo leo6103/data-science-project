@@ -35,10 +35,10 @@ legal_status_mapping = {
     'Sổ đỏ chính chủ': 1,
     'Sổ đỏ/ Sổ hồng': 1,
     'Có sổ.': 1,
-    'Sổ 50 năm': 2,
-    'Sổ lâu dài + Quỹ căn HĐMB 50 năm': 2,
-    'Pháp lý đầy đủ, đảm bảo an tâm cho các giao dịch bất động sản': 2,
-    'Đầy đủ sẵn sàng giao dịch': 2
+    'Sổ 50 năm': 1,
+    'Sổ lâu dài + Quỹ căn HĐMB 50 năm': 1,
+    'Pháp lý đầy đủ, đảm bảo an tâm cho các giao dịch bất động sản': 1,
+    'Đầy đủ sẵn sàng giao dịch': 1
 }
 
 
@@ -90,6 +90,7 @@ def normalize_interim_item(entry: Dict) -> Dict:
     entry = process_bedrooms_toilets(entry)
     entry = process_coordinates(entry)
     entry = process_area_price(entry)
+
     entry = process_directions(entry)
     entry = process_legal_status(entry)
     entry = process_furniture_data(entry)
@@ -106,7 +107,7 @@ def normalize_process_item(entry: Dict) -> Dict:
     entry = remove_other_keys(entry)
     if entry is None:
         return None
-    entry = remove_objects_with_none(entry)
+    # entry = remove_objects_with_none(entry)
     return entry
 
 
@@ -125,35 +126,38 @@ def process_area_price(entry: Dict) -> Dict:
 
     if price == "Thỏa thuận":
         entry["price"] = "deal"
-        entry["price_square"] = "deal"
 
     # Nếu giá có dạng "X triệu/m²"
     elif isinstance(price, str) and "triệu/m²" in price:
-        price_per_sqm = float(price.split()[0].replace(",", "."))
-        entry["price_square"] = price_per_sqm
-        if area is not None:
-            entry["price"] = price_per_sqm * area
+        try:
+            price_per_sqm = float(price.split()[0].replace(",", "."))
+            if area is not None:
+                entry["price"] = price_per_sqm * area
+        except ValueError:
+            entry["price"] = None  # Gán None nếu chuyển đổi thất bại
 
     # Nếu giá có dạng "X tỷ"
     elif isinstance(price, str) and "tỷ" in price:
-        total_price_billion = float(price.split()[0].replace(",", "."))
-        total_price = total_price_billion * 1e3
-        entry["price_square"] = total_price / area if area else None
-        entry["price"] = total_price
+        try:
+            total_price_billion = float(price.split()[0].replace(",", "."))
+            total_price = total_price_billion * 1e3
+            entry["price"] = total_price
+        except ValueError:
+            entry["price"] = None
 
-    #Nếu giá có dạng "X triệu"
+    # Nếu giá có dạng "X triệu"
     elif isinstance(price, str) and "triệu" in price:
-        total_price_billion = float(price.split()[0].replace(",", "."))
-        total_price = total_price_billion
-        entry["price_square"] = total_price / area if area else None
-        entry["price"] = total_price
+        try:
+            total_price_million = float(price.split()[0].replace(",", "."))
+            entry["price"] = total_price_million
+        except ValueError:
+            entry["price"] = None
 
-    if "price" in entry and entry["price"] != "deal":
+    # Chuyển price sang float và chia cho 1000 nếu cần
+    if "price" in entry and isinstance(entry["price"], (int, float)):
         entry["price"] /= 1000
-    if "price_square" in entry:
-        del entry["price_square"]
-    return entry
 
+    return entry
 
 def process_directions(entry: Dict) -> Dict:
 
@@ -190,17 +194,23 @@ def process_directions(entry: Dict) -> Dict:
 
 def process_furniture_data(entry):
     """
-    Hàm xử lý dữ liệu furniture từ một mảng các object.
+    Hàm xử lý dữ liệu furniture từ một object, chấp nhận khớp một phần giá trị.
     Args:
-        data (list): Mảng các object chứa thông tin về nội thất.
+        entry (dict): Một object chứa thông tin về nội thất.
     Returns:
-        pd.DataFrame: DataFrame với cột furniture đã được mã hóa.
+        dict: Object với cột 'furniture' đã được mã hóa.
     """
     furniture = entry.get("furniture")
     if furniture is not None:
-        entry["furniture"] = furniture_mapping.get(furniture, 2)  # Gán mã hóa hoặc mặc định là 2 nếu không tìm thấy
+        # Tìm key trong từ điển có chứa một phần của furniture
+        for key, value in furniture_mapping.items():
+            if key in furniture:  # Kiểm tra chuỗi con
+                entry["furniture"] = value
+                return entry
+        # Nếu không khớp phần nào thì gán None
+        entry["furniture"] = None
     else:
-        entry["furniture"] = 2
+        entry["furniture"] = None
     return entry
 
 def process_bedrooms_toilets(entry: Dict) -> Dict:
@@ -219,20 +229,26 @@ def process_bedrooms_toilets(entry: Dict) -> Dict:
 
 def process_legal_status(entry):
     """
-    Hàm chuẩn hóa dữ liệu legal status từ một mảng các object.
+    Hàm chuẩn hóa dữ liệu legal status từ một object,
+    cho phép khớp một phần giá trị với legal_status_mapping.
     Args:
-        data (list): Mảng các object chứa thông tin về tình trạng pháp lý.
+        entry (dict): Một object chứa thông tin về tình trạng pháp lý.
     Returns:
-        list: Mảng các object với thuộc tính legal status đã được mã hóa.
+        dict: Object với thuộc tính legal_status đã được mã hóa.
     """
-
     legal_status = entry.get("legal_status")
     if legal_status is not None:
-        entry["legal_status"] = legal_status_mapping.get(legal_status, 3)  # Mặc định là 3 nếu không tìm thấy
+        # Tìm key trong từ điển có chứa một phần của legal_status
+        for key, value in legal_status_mapping.items():
+            if key in legal_status:  # Kiểm tra khớp một phần
+                entry["legal_status"] = value
+                return entry
+        # Nếu không khớp phần nào thì gán None
+        entry["legal_status"] = None
     else:
-        entry["legal_status"] = 3
+        entry["legal_status"] = None
 
-    return  entry
+    return entry
 
 
 def remove_keys_from_data(entry):

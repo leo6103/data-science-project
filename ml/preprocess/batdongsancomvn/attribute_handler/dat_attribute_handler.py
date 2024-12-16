@@ -109,8 +109,6 @@ def remove_duplicates_by_url(data):
         if url not in seen_urls:
             unique_data.append(item)
             seen_urls.add(url)
-    print("remove_duplicates_by_url success")
-
     return unique_data
 
 def process_coordinates(entry: Dict) -> Dict:
