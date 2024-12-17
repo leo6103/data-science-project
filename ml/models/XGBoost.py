@@ -149,7 +149,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, r2_score
 from ml.models.BaseModel import BaseModel
 from ml.utils import prepare_data_chungcu,prepare_data_dat,prepare_data_nharieng
 from xgboost import XGBRegressor
@@ -196,8 +196,9 @@ class XGBoostModel(BaseModel):
 
     def calculate_metrics(self, y_actual, y_pred, is_log=True):
         """
-        Tính toán metric: MSE, RMSE, và MAPE tự tính.
-        Nếu giá đã được log-transform, chuyển ngược lại bằng exp().
+        Tính toán MSE, RMSE, MAPE, R².
+        Nếu is_log=True, y_actual và y_pred được coi là log(price),
+        nên ta exp() để quay về giá thực.
         """
         epsilon = 1e-10
         if is_log:
@@ -206,10 +207,9 @@ class XGBoostModel(BaseModel):
 
         mse = mean_squared_error(y_actual, y_pred)
         rmse = np.sqrt(mse)
-        # Tự tính MAPE
         mape = np.mean(np.abs((y_actual - y_pred) / (y_actual + epsilon))) * 100
-
-        return mse, rmse, mape
+        r2 = r2_score(y_actual, y_pred)
+        return mse, rmse, mape, r2
 
     def bayesian_optimization_tuning(self, X_train, y_train):
         """
@@ -263,13 +263,12 @@ class XGBoostModel(BaseModel):
         y_train_pred = self.pipeline.predict(X_train)
         y_test_pred = self.pipeline.predict(X_test)
 
-        # Tính toán metric cho tập Train
-        train_mse, train_rmse, train_mape = self.calculate_metrics(y_train, y_train_pred, is_log=is_log)
-        logging.info(f" Train MSE: {train_mse:.4f}, Train RMSE: {train_rmse:.4f}, Train MAPE: {train_mape:.2f}%")
+        train_mse, train_rmse, train_mape, r2= self.calculate_metrics(y_train, y_train_pred, is_log=is_log)
+        logging.info(f" Train MSE: {train_mse:.4f}, Train RMSE: {train_rmse:.4f}, Train MAPE: {train_mape:.2f}%, Train R²: {r2:.4f}")
 
-        # Tính toán metric cho tập Test
-        test_mse, test_rmse, test_mape = self.calculate_metrics(y_test, y_test_pred, is_log=is_log)
-        logging.info(f" Test MSE: {test_mse:.4f}, Test RMSE: {test_rmse:.4f}, Test MAPE: {test_mape:.2f}%")
+        # Calculate metrics for test set
+        test_mse, test_rmse, test_mape, r2 = self.calculate_metrics(y_test, y_test_pred, is_log=is_log)
+        logging.info(f"Test MSE: {test_mse:.4f}, Test RMSE: {test_rmse:.4f}, Test MAPE: {test_mape:.2f}%, Test R²: {r2:.4f}")
 
         logging.info("Training complete!")
 
@@ -310,6 +309,6 @@ class XGBoostModel(BaseModel):
         if not self.pipeline:
             raise ValueError("Model is not trained yet.")
         y_pred = self.predict(X_test)
-        _, rmse, mape = self.calculate_metrics(y_test, y_pred, is_log=is_log)
-        logging.info(f"Final RMSE on test: {rmse:.4f}, MAPE on test: {mape:.2f}%")
+        mse, rmse, mape,r2 = self.calculate_metrics(y_test, y_pred, is_log=is_log)
+        logging.info(f"Final MSE on test:{mse}, RMSE on test:{rmse:.4f}, MAPE on test: {mape:.2f}%", f"R² on test: {r2:.4f}")
         return rmse, mape

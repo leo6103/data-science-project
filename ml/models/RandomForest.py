@@ -157,7 +157,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.model_selection import RandomizedSearchCV
 from skopt import BayesSearchCV  # Bayesian Optimization
-from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
+from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error,r2_score
 from ml.models.BaseModel import BaseModel
 from ml.utils import prepare_data_chungcu,prepare_data_dat,prepare_data_nharieng,prepare_data_predict
 
@@ -199,21 +199,20 @@ class RandomForest(BaseModel):
 
     def calculate_metrics(self, y_actual, y_pred, is_log=True):
         """
-        Calculate evaluation metrics.
+        Tính toán MSE, RMSE, MAPE, R².
+        Nếu is_log=True, y_actual và y_pred được coi là log(price),
+        nên ta exp() để quay về giá thực.
         """
         epsilon = 1e-10
-
-        y_actual = np.exp(y_actual - epsilon)
-        y_pred = np.exp(y_pred - epsilon)
-        sum_abs_percentage_error = 0
-        for i in range(len(y_pred)):
-            print(f"Giá trị dự đoán: {y_pred[i]:.4f}, Thực tế: {y_actual[i]:.4f}")
-            sum_abs_percentage_error += abs((y_actual[i] - y_pred[i]) / y_actual[i])
+        if is_log:
+            y_actual = np.exp(y_actual - epsilon)
+            y_pred = np.exp(y_pred - epsilon)
 
         mse = mean_squared_error(y_actual, y_pred)
         rmse = np.sqrt(mse)
-        mape = (sum_abs_percentage_error / len(y_actual)) * 100
-        return mse, rmse, mape
+        mape = np.mean(np.abs((y_actual - y_pred) / (y_actual + epsilon))) * 100
+        r2 = r2_score(y_actual, y_pred)
+        return mse, rmse, mape, r2
 
     def random_search_tuning(self, X_train, y_train):
         """
@@ -232,7 +231,7 @@ class RandomForest(BaseModel):
             estimator=self.model,
             param_distributions=param_distributions,
             n_iter=50,  # Number of random configurations
-            cv=10,  # 10-fold CV
+            cv=20,  # 10-fold CV
             scoring='neg_mean_squared_error',
             random_state=42,
             verbose=3
@@ -267,7 +266,7 @@ class RandomForest(BaseModel):
         logging.info(f"Best parameters from Bayesian Optimization: {bayes_search.best_params_}")
         self.model = bayes_search.best_estimator_
 
-    def train(self, X_train, y_train, X_test, y_test, is_log=False, tuning_method="bayesian"):
+    def train(self, X_train, y_train, X_test, y_test, is_log=False, tuning_method="random_search"):
         """
         Train the Random Forest model with hyperparameter tuning.
         """
@@ -292,12 +291,12 @@ class RandomForest(BaseModel):
         y_test_pred = self.model.predict(X_test)
 
         # Calculate metrics for train set
-        train_mse, train_rmse, train_mape = self.calculate_metrics(y_train, y_train_pred, is_log=is_log)
-        logging.info(f" Train MSE: {train_mse:.4f}, Train RMSE: {train_rmse:.4f}, Train MAPE: {train_mape:.2f}%")
+        train_mse, train_rmse, train_mape, r2= self.calculate_metrics(y_train, y_train_pred, is_log=is_log)
+        logging.info(f" Train MSE: {train_mse:.4f}, Train RMSE: {train_rmse:.4f}, Train MAPE: {train_mape:.2f}%, Train R²: {r2:.4f}")
 
         # Calculate metrics for test set
-        test_mse, test_rmse, test_mape = self.calculate_metrics(y_test, y_test_pred, is_log=is_log)
-        logging.info(f"Test MSE: {test_mse:.4f}, Test RMSE: {test_rmse:.4f}, Test MAPE: {test_mape:.2f}%")
+        test_mse, test_rmse, test_mape, r2 = self.calculate_metrics(y_test, y_test_pred, is_log=is_log)
+        logging.info(f"Test MSE: {test_mse:.4f}, Test RMSE: {test_rmse:.4f}, Test MAPE: {test_mape:.2f}%, Test R²: {r2:.4f}")
 
         logging.info("Training complete!")
 
@@ -352,6 +351,6 @@ class RandomForest(BaseModel):
         if not self.model:
             raise ValueError("Model is not trained yet.")
         y_pred = self.predict(X_test)
-        _, rmse, mape = self.calculate_metrics(y_test, y_pred, is_log=is_log)
-        logging.info(f"Final RMSE on test: {rmse:.4f}, MAPE on test: {mape:.2f}%")
+        mse, rmse, mape,r2 = self.calculate_metrics(y_test, y_pred, is_log=is_log)
+        logging.info(f"Final MSE on test:{mse}, RMSE on test:{rmse:.4f}, MAPE on test: {mape:.2f}%", f"R² on test: {r2:.4f}")
         return rmse, mape
