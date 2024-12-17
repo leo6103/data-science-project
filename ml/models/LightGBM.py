@@ -7,7 +7,7 @@ from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error, 
 import lightgbm as lgb
 import optuna
 from ml.models.BaseModel import BaseModel
-from ml.utils import prepare_data_chungcu, prepare_data_dat, prepare_data_nharieng
+from ml.utils import prepare_data_chungcu, prepare_data_dat, prepare_data_nharieng, prepare_data_predict
 
 logging.basicConfig(level=logging.INFO)
 
@@ -214,3 +214,17 @@ class LightGBM(BaseModel):
 
         self.model = joblib.load(path)
         logging.info(f"Model loaded from {path}")
+    
+    def predict(self, X):
+        """
+        Predict using the trained model.
+        :param X: Input data (JSON, dict, or DataFrame)
+        :return: Predicted values
+        """
+        # Kiểm tra xem model đã được load chưa
+        if not self.model:
+            raise ValueError("Model is not trained or loaded yet.")
+        X = prepare_data_predict(X)  
+        print(X)
+        X = X.to_numpy()
+        return self.model.predict(X)  
